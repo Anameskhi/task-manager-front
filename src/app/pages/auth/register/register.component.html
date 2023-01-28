@@ -1,1 +1,25 @@
-<p>register works!</p>
+<section>
+  <form [formGroup]="form" (submit)="submit()" fxLayout="column" fxLayoutAlign="center center"  >
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input 
+      type="email" 
+      matInput  
+      placeholder="abcd@yahoo.com"  
+      name="email"
+      formControlName="email"
+      >
+
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input 
+      type="password" 
+      matInput  
+      placeholder="Password"  
+      name="password"
+      formControlName="password">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+</section>

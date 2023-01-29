@@ -10,7 +10,9 @@ import { MatInputModule} from '@angular/material/input';
 import { MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule} from '@angular/material/card'
+import { MatToolbarModule} from '@angular/material/toolbar'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatToolbarModule
+    
   ]
 })
 export class AuthModule { }

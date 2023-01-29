@@ -1,5 +1,32 @@
-<section>
-  <form [formGroup]="form" (submit)="submit()" fxLayout="column" fxLayoutAlign="center center"  >
+<section fxLayoutAlign="center center">
+  <mat-card fxFlex="25">
+  <mat-toolbar color='primary'>Register form</mat-toolbar>
+  <form [formGroup]="form" fxLayoutAlign="stretch" (submit)="submit()" fxLayout="column"  >
+    
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input 
+      type="text" 
+      matInput  
+      placeholder="Your first name"  
+      name="firstName"
+      formControlName="firstName"
+      >
+      <mat-error *ngIf="getFirstName?.errors?.['required'] && getFirstName?.touched">First Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input 
+      type="text" 
+      matInput  
+      placeholder="Your last name"  
+      name="lastName"
+      formControlName="lastName"
+      >
+      <mat-error *ngIf="getLastName?.errors?.['required'] && getLastName?.touched">Last Name is required</mat-error>
+    </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input 
@@ -9,8 +36,10 @@
       name="email"
       formControlName="email"
       >
-
+      <mat-error *ngIf="getEmail?.errors?.['required'] && getEmail?.touched">Email is required</mat-error>
+      <mat-error *ngIf="getEmail?.errors?.['email'] && getEmail?.touched">Email form isn't correct</mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
       <input 
@@ -19,7 +48,13 @@
       placeholder="Password"  
       name="password"
       formControlName="password">
+      <mat-error *ngIf="getPassword?.errors?.['required'] && getPassword?.touched">Password is required</mat-error>
+      <mat-error *ngIf="getPassword?.errors?.['minlength'] && getPassword?.touched">Password length must be more than 3 characters</mat-error>
+      <mat-error *ngIf="getPassword?.errors?.['maxlength'] && getPassword?.touched">Password length must be less than 10 characters</mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+
+    <button type="submit" mat-raised-button color="primary">Submit</button> <br>
+
   </form>
+ </mat-card>
 </section>

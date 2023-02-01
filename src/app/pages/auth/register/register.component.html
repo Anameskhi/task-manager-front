@@ -1,60 +1,48 @@
-<section fxLayoutAlign="center center">
-  <mat-card fxFlex="25">
-  <mat-toolbar color='primary'>Register form</mat-toolbar>
-  <form [formGroup]="form" fxLayoutAlign="stretch" (submit)="submit()" fxLayout="column"  >
-    
-    <mat-form-field appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input 
-      type="text" 
-      matInput  
-      placeholder="Your first name"  
-      name="firstName"
-      formControlName="firstName"
-      >
-      <mat-error *ngIf="getFirstName?.errors?.['required'] && getFirstName?.touched">First Name is required</mat-error>
-    </mat-form-field>
+<form [formGroup]="form" class="center-content" (submit)="submit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>First name</mat-label>
+    <input 
+    matInput 
+    placeholder="Your fast name"
+    name="firstName"
+    formControlName="firstName">
+    <mat-error *ngIf="getFirstName?.errors?.['required'] && getFirstName?.touched">First Name is required</mat-error>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input 
-      type="text" 
-      matInput  
-      placeholder="Your last name"  
-      name="lastName"
-      formControlName="lastName"
-      >
-      <mat-error *ngIf="getLastName?.errors?.['required'] && getLastName?.touched">Last Name is required</mat-error>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Last name</mat-label>
+    <input 
+    matInput 
+    placeholder="Your last name"
+    name="lastName"
+    formControlName="lastName">
+    <mat-error *ngIf="getLastName?.errors?.['required'] && getLastName?.touched">Last Name is required</mat-error>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input 
-      type="email" 
-      matInput  
-      placeholder="abcd@yahoo.com"  
-      name="email"
-      formControlName="email"
-      >
-      <mat-error *ngIf="getEmail?.errors?.['required'] && getEmail?.touched">Email is required</mat-error>
-      <mat-error *ngIf="getEmail?.errors?.['email'] && getEmail?.touched">Email form isn't correct</mat-error>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input 
+    matInput 
+    placeholder="example@yahoo.com"
+    name="email"
+    formControlName="email">
+    <mat-error *ngIf="getEmail?.errors?.['required'] && getEmail?.touched">Email is required</mat-error>
+    <mat-error *ngIf="getEmail?.errors?.['email'] && getEmail?.touched">Email form isn't correct</mat-error>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
-      <input 
-      type="password" 
-      matInput  
-      placeholder="Password"  
-      name="password"
-      formControlName="password">
-      <mat-error *ngIf="getPassword?.errors?.['required'] && getPassword?.touched">Password is required</mat-error>
-      <mat-error *ngIf="getPassword?.errors?.['minlength'] && getPassword?.touched">Password length must be more than 3 characters</mat-error>
-      <mat-error *ngIf="getPassword?.errors?.['maxlength'] && getPassword?.touched">Password length must be less than 10 characters</mat-error>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input 
+    type="password" 
+    matInput placeholder="Your password"
+    name="password"
+    formControlName="password">
+    <mat-error *ngIf="getPassword?.errors?.['required'] && getPassword?.touched">Password is required</mat-error>
+    <mat-error *ngIf="getPassword?.errors?.['minlength'] && getPassword?.touched">Password length must be more than 3 characters</mat-error>
+    <mat-error *ngIf="getPassword?.errors?.['maxlength'] && getPassword?.touched">Password length must be less than 10 characters</mat-error>
+  </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">Submit</button> <br>
 
-  </form>
- </mat-card>
-</section>
+  <button type="submit" mat-raised-button color="primary">Submit</button> <br>
+
+</form>

@@ -1,7 +1,5 @@
 <div class="main-cont">
   <div class="drawer">
-
-    <h1>testetetststetatiyeaf</h1>
     <mat-drawer-container autosize class="side-bar">
       <mat-drawer #drawer mode="side" class="glass-morphism">
         <div class="avatar-cont">
@@ -21,19 +19,19 @@
             <button (click)="showCreateBoard = !showCreateBoard">+</button>
           </div>
         </div>
-       
+
         <div class="logout">
           <button>Log Out</button>
         </div>
       </mat-drawer>
     </mat-drawer-container>
-    
+
     <div *ngIf="showCreateBoard" class="create-board">
-          <header class="create-board-header">
-            <h2>Create Board</h2>
-            <mat-icon>close</mat-icon>
-          </header>
-        </div>
+      <header class="create-board-header">
+        <h2>Create Board</h2>
+        <mat-icon>close</mat-icon>
+      </header>
+    </div>
     <button class="test" type="button" mat-button (click)="drawer.toggle()">
       >
     </button>

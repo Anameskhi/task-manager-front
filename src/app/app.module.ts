@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BoardComponent } from './pages/board/board.component';
 
 @NgModule({
-  declarations: [AppComponent, BoardComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
 
   providers: [],

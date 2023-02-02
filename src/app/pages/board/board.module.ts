@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BoardRoutingModule } from './board-routing.module';
+import { BoardComponent } from './board.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BoardComponent
+  ],
   imports: [
     CommonModule,
-    BoardRoutingModule
+    BoardRoutingModule,
+    MatToolbarModule,
   ]
 })
 export class BoardModule { }

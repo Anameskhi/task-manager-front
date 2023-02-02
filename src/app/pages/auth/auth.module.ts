@@ -6,19 +6,15 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './register/register.component';
-import { MatCardModule} from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTabsModule} from '@angular/material/tabs';
-import { MatInputModule} from '@angular/material/input';
-import { MatButtonModule} from '@angular/material/button'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    RegisterComponent
-  ],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -29,10 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatCardModule,
     MatButtonModule,
-    ReactiveFormsModule
-    
-    
-   
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

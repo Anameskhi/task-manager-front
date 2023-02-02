@@ -1,42 +1,44 @@
+<header>
+  <app-header></app-header>
+</header>
+
 <div class="main-cont">
-  <div class="drawer">
-    <mat-drawer-container autosize class="side-bar">
-      <mat-drawer #drawer mode="side" class="glass-morphism">
-        <div class="avatar-cont">
-          <div>
-            <img src="/assets/images/avatar.svg" alt="avatar" />
-          </div>
-
-          <div>
-            <h3>luka joglidze</h3>
-            <p>lukajoglidze@gmail.com</p>
-          </div>
+  <div class="glass-morphism side-bar-sizing">
+    <ul>
+      <li>
+        <div
+          class="list-style"
+          routerLinkActive="active-button"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/home"
+        >
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
         </div>
-        <hr />
-        <div>
-          <div class="board-alignment">
-            <span>Your boards</span>
-            <button (click)="showCreateBoard = !showCreateBoard">+</button>
-          </div>
-        </div>
-
-        <div class="logout">
-          <button>Log Out</button>
-        </div>
-      </mat-drawer>
-    </mat-drawer-container>
-
-    <div *ngIf="showCreateBoard" class="create-board">
-      <header class="create-board-header">
-        <h2>Create Board</h2>
-        <mat-icon>close</mat-icon>
-      </header>
-    </div>
-    <button class="test" type="button" mat-button (click)="drawer.toggle()">
+      </li>
+      <li
+        class="list-style"
+        routerLinkActive="active-button"
+        routerLink="createboard"
       >
-    </button>
+        <mat-icon>developer_board</mat-icon>
+        <span>Board</span>
+      </li>
+      <li
+        class="list-style"
+        routerLink="contruction"
+        routerLinkActive="active-button"
+      >
+        <mat-icon> format_color_fill</mat-icon>
+        <span>Template</span>
+      </li>
+      <li class="list-style disabled">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </li>
+    </ul>
   </div>
-  <div>
-    <h1>board</h1>
+  <div class="glass-morphism board-sizing">
+    <router-outlet></router-outlet>
   </div>
 </div>

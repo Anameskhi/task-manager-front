@@ -42,6 +42,18 @@
     <mat-error *ngIf="getPassword?.errors?.['maxlength'] && getPassword?.touched">Password length must be less than 10 characters</mat-error>
   </mat-form-field>
 
+  <mat-form-field class="example-full-width">
+    <mat-label>Confirm Password</mat-label>
+    <input 
+    type="password" 
+    matInput placeholder="Confirm password"
+    name="confirmpassword"
+    formControlName="confirmPassword">
+    <mat-error *ngIf="getConfirmPassword?.invalid && getConfirmPassword?.touched">       Confirm Password doesn't match to password
+    </mat-error>
+
+  </mat-form-field>
+
 
   <button type="submit" mat-raised-button color="primary">Submit</button> <br>
 

@@ -1,3 +1,4 @@
+import { PasswordValidate } from './../../../core/validators/password.validator';
 
 
 
@@ -22,6 +23,9 @@ export class RegisterComponent implements OnInit {
   get getPassword(){
     return this.form.get('password')
   }
+  get getConfirmPassword(){
+    return this.form.get('confirmPassword') ;
+  }
 
   form: FormGroup = new FormGroup(
     { 
@@ -34,8 +38,9 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(10)
-      ])
-    })
+      ]),
+      confirmPassword: new FormControl(''),
+    },{validators: PasswordValidate.passwordMatch});
     
   constructor() { }
 

@@ -1,5 +1,7 @@
+import { AuthService } from './../../../core/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,11 @@ export class LoginComponent {
   get getPassword(){
     return this.form.get('password')
   }
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ){}
 
   form: FormGroup = new FormGroup(
     { 
@@ -30,6 +37,8 @@ export class LoginComponent {
       this.form.markAllAsTouched()
       if(this.form.invalid)return;
   
-        console.log(this.form.value)
-    }
+      this.authService.login(this.form.value).subscribe(res => {
+        console.log(res)
+        this.router.navigate(['/home'])
+      })}
 }

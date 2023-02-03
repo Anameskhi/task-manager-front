@@ -49,12 +49,10 @@
     matInput placeholder="Confirm password"
     name="confirmpassword"
     formControlName="confirmPassword">
-    <mat-error *ngIf="getConfirmPassword?.invalid && getConfirmPassword?.touched">       Confirm Password doesn't match to password
-    </mat-error>
+    <mat-error *ngIf="getConfirmPassword?.invalid && getConfirmPassword?.touched"> Confirm Password is empty or it doesn't match to password</mat-error>
 
   </mat-form-field>
 
 
   <button type="submit" mat-raised-button color="primary">Submit</button> <br>
-
 </form>

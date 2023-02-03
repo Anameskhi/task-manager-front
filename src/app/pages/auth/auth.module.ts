@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [AuthComponent, LoginComponent, RegisterComponent],
   imports: [
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
+  
   ],
 })
 export class AuthModule {}

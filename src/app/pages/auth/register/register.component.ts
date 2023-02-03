@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../../core/services/auth.service';
 import { PasswordValidate } from './../../../core/validators/password.validator';
 
 
@@ -39,18 +41,24 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(10)
       ]),
-      confirmPassword: new FormControl(''),
+      confirmPassword: new FormControl('', Validators.required),
     },{validators: PasswordValidate.passwordMatch});
     
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
+
   submit(){
     this.form.markAllAsTouched()
     if(this.form.invalid)return;
-
-      console.log(this.form.value)
+      this.authService.register(this.form.value).subscribe(res => {
+        console.log(res)
+        this.router.navigate(['/auth/login'])
+      })
   }
 
 }

@@ -3,6 +3,6 @@
         <img src="assets/images/Trello_logo_PNG1.png" alt="logo">
     </div>
     <div>
-        <mat-icon>exit_to_app</mat-icon>
+        <mat-icon (click)="logout()" routerLink="/auth/login" routerLinkActive="router-link-active">exit_to_app</mat-icon>
     </div>
 </div>

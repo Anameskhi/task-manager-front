@@ -6,6 +6,7 @@ import { PasswordValidate } from './../../../core/validators/password.validator'
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -56,7 +57,6 @@ export class RegisterComponent implements OnInit {
     this.form.markAllAsTouched()
     if(this.form.invalid)return;
       this.authService.register(this.form.value).subscribe(res => {
-        console.log(res)
         this.router.navigate(['/auth/login'])
       })
   }

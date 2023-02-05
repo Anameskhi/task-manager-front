@@ -13,7 +13,7 @@ export interface Login {
   password: string;
 }
 
-export interface LoginResponse {
+export interface AuthResponse {
   user: User;
   token: Token;
 }

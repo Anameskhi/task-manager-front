@@ -22,7 +22,7 @@ export class AuthService extends BaseService {
     return this.post<AuthResponse>('auth/login',payload)
     .pipe(
       tap((response: AuthResponse)=>{
-       const cookieExpire = new Date(Date.now() + 24)
+       const cookieExpire = new Date(Date.now() + 24 * 60 * 60 * 1000)
 
         this.cookieStorageService.setCookie(
           'token',
@@ -52,7 +52,7 @@ export class AuthService extends BaseService {
     return this.cookieStorageService.getCookie('token');
   }
 
-  get RefreshToken(): string {
+  get refreshTok(): string {
     return this.cookieStorageService.getCookie('refreshToken');
   }
   

@@ -27,6 +27,7 @@ export class CookieStorageService {
   deleteCookie(name: string){
     return this.cookieService.delete(name)
   }
+  
 
   deleteAllCookies(){
     return this.cookieService.deleteAll()

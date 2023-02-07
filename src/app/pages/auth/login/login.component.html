@@ -1,3 +1,5 @@
+<div *ngIf="errorMessage">{{errorMessage}}</div>
+
 <form [formGroup]="form" class="center-content" (submit)="submit()">
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>

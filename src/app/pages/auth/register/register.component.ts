@@ -14,6 +14,7 @@ import { pipe } from 'rxjs';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  errorMessage?: string
   get getFirstName(){
     return this.form.get('firstName')
   }
@@ -56,14 +57,20 @@ export class RegisterComponent implements OnInit {
   submit(){
     this.form.markAllAsTouched()
     if(this.form.invalid)return;
-      this.authService.register(this.form.value).subscribe(res => {
+      this.authService.register(this.form.value)
+      .subscribe({
+        next: res=>{
+          if(res){
         this.router.navigate(['/auth/login'])
-      })
+          }
+        },
+        error: ({error}) => {
+         
+          console.log(error.message)}
+        }
+      )
+    }
   }
-
-}
-
-
 
 
 

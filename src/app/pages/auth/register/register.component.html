@@ -1,4 +1,8 @@
+<div *ngIf="errorMessage">{{errorMessage}}</div>
+
 <form [formGroup]="form" class="center-content" (submit)="submit()">
+
+
   <mat-form-field class="example-full-width">
     <mat-label>First name</mat-label>
     <input 
@@ -33,10 +37,13 @@
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
     <input 
-    type="password" 
+    type='password'
     matInput placeholder="Your password"
     name="password"
     formControlName="password">
+    <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button> -->
     <mat-error *ngIf="getPassword?.errors?.['required'] && getPassword?.touched">Password is required</mat-error>
     <mat-error *ngIf="getPassword?.errors?.['minlength'] && getPassword?.touched">Password length must be more than 3 characters</mat-error>
     <mat-error *ngIf="getPassword?.errors?.['maxlength'] && getPassword?.touched">Password length must be less than 10 characters</mat-error>
@@ -54,5 +61,7 @@
   </mat-form-field>
 
 
+ 
   <button type="submit" mat-raised-button color="primary">Submit</button> <br>
 </form>
+

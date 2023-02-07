@@ -1,3 +1,4 @@
+import { CookieStorageService } from './../../core/services/cookie.service';
 import { AuthService } from './../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,14 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieStorageService: CookieStorageService
   ) { }
 
   ngOnInit(): void {
   }
   
  logout(){
-   this.authService.signOut()
-
- }
+this.authService.signOut()
+console.log(this.cookieStorageService.deleteCookie('token'))
+}
 }

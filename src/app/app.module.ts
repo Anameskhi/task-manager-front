@@ -1,4 +1,4 @@
-import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,11 +19,13 @@ import { BoardComponent } from './pages/board/board.component';
   ],
 
   providers: [
-    { 
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    
+    // { 
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // },
+    CookieService
   ],
   bootstrap: [AppComponent],
 })

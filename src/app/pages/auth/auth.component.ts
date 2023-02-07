@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+
   title = 'angular-material-tab-router';  
   navLinks: any[];
   activeLinkIndex = -1; 
@@ -28,4 +29,5 @@ ngOnInit(): void {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
   });
 }
+
 }

@@ -133,19 +133,31 @@
 
                 border-radius: 4px;
 
-                background: rgba(white, 0.5);
+                background: rgba(rgb(185, 181, 181), 0.5);
+                // background: rgba(white, 0.5);
 
                 &:not(:first-child) {
                     margin-left: 0;
                 }
-
-                .column-title {
-                    font-size: 20px;
-                    font-weight: 800;
-                    font-family: 'Lato', sans-serif;
-                    text-transform: uppercase;
+                .column-header{
+                    display: flex;
+                    justify-content: space-between;
                     margin-bottom: 20px;
+                    .column-title {
+                        font-size: 20px;
+                        font-weight: 800;
+                        font-family: 'Lato', sans-serif;
+                        text-transform: uppercase;
+                        
+                    
+                    }
+                    .column-delete{
+                        color: white;
+                        font-size: 20px;
+                        cursor: pointer;
+                    }
                 }
+                
             }
         }
     }

@@ -40,24 +40,43 @@
 
       <div class="board-columns" cdkDropListGroup>
         <div class="board-column">
-
-          <div class="column-title">
-            column name
+          <div class="column-header">
+            <div class="column-title">
+              column name
+            </div>
+            <div class="column-delete">
+              ...
+            </div>
           </div>
+        
 
           <div class="tasks-container"
           cdkDropList
           #todoList="cdkDropList"
           [cdkDropListData]="todo"
-          (cdkDropListDropped)="drop($event)">
-            <div class="task" *ngFor=" let item of todo " cdkDrag>
-             {{item}}
-            </div>
+          (cdkDropListDropped)="drop($event)"
+          >
+          <div class="task" *ngIf="todo" cdkDrag>
+            <ng-container *ngFor="let item of todo" >
+              {{item}}
+            </ng-container>
           </div>
+          
+          
+          </div>
+          <button mat-raised-button (click)="openDialog()" class="add-task">
+            + add task
+          </button>
+         
         </div>
         <div class="board-column">
-          <div class="column-title">
-            research
+          <div class="column-header">
+            <div class="column-title">
+              column name
+            </div>
+            <div class="column-delete">
+              ...
+            </div>
           </div>
           <div class="tasks-container"
           cdkDropList
@@ -68,17 +87,12 @@
              {{item}}
             </div>
           </div>
+
+          <button class="add-task">
+            + add task
+          </button>
         </div>
-        <div class="board-column">
-          <div class="column-title">
-            research
-          </div>
-        </div>
-        <div class="board-column">
-          <div class="column-title">
-            research
-          </div>
-        </div>
+        
 
       </div>
 

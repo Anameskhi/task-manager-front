@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { AddTaskComponent } from './modals/add-task/add-task.component';
+
 
 // import { Board } from 'src/app/models/board.model';
 // import { Column } from 'src/app/models/column.model';
@@ -9,11 +12,29 @@ import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@a
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  todo?:any = [];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-  doneList?: any|CdkDropList<any>;
+  done?:any= ['dasad','asdasd','asdasd'];
+  animal?: string;
   
+  constructor(public dialog: MatDialog) { }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddTaskComponent, 
+      {
+      data: {todo: this.todo, done: this.done},
+      }
+    
+    );
+        
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed' + result);
+      
+      // this.todo = result ;
+      // this.todo += result;
+      // console.log(result);  
+      // this.todo.push(result[result.length-1]);
+    });
+  }
 
   ngOnInit() {
   }

@@ -1,3 +1,5 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgToastModule } from 'ng-angular-popup';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -15,7 +17,10 @@ import { BoardComponent } from './pages/board/board.component';
     BrowserModule, 
     AppRoutingModule, 
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgToastModule,
+    MatSnackBarModule
+
   ],
 
   providers: [

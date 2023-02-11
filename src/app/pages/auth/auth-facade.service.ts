@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, timestamp } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ export class AuthFacadeService {
   setErrors(error : string){
   
       this.errors.next(error)
+      setTimeout(()=>{
+        this.errors.next(null)
+
+      }, 3000)
 
    
   }

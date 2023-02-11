@@ -1,3 +1,4 @@
+import { NgToastModule } from 'ng-angular-popup';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatCardModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   
   ],
 })

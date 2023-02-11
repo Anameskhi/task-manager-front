@@ -2,15 +2,16 @@ import { catchError, throwError } from 'rxjs';
 import { AuthFacadeService } from './../auth-facade.service';
 import { AuthService } from './../../../core/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements  OnDestroy {
   get getEmail(){
     return this.form.get('email')
   }
@@ -21,6 +22,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private authFacadeService: AuthFacadeService,
+    private toast: NgToastService,
     private router: Router
   ){}
 
@@ -49,9 +51,16 @@ export class LoginComponent {
       )
       .subscribe({
         next: res=>{
-        console.log(res)
+        this.toast.success({detail: "Success Message", summary: "Login is Success", duration: 4000})
         this.router.navigate(['/home'])
+        },
+         error: err=>{
+          this.toast.error({detail: "Error Message", summary: err.message , duration: 4000})
         }
-        
-      })}
+      })
+    }
+
+      ngOnDestroy(): void {
+        this.authFacadeService.destroy()
+      }
 }

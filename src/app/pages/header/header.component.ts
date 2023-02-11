@@ -19,6 +19,5 @@ export class HeaderComponent implements OnInit {
   
  logout(){
 this.authService.signOut()
-console.log(this.cookieStorageService.deleteCookie('token'))
 }
 }

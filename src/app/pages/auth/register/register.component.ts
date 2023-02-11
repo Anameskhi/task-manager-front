@@ -1,20 +1,24 @@
+import { AuthFacadeService } from './../auth-facade.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../core/services/auth.service';
 import { PasswordValidate } from './../../../core/validators/password.validator';
 
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { pipe } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
-  errorMessage?: string
+export class RegisterComponent implements OnInit, OnDestroy {
+  //  hide = true
+  
+  errorMessage?: string 
+
   get getFirstName(){
     return this.form.get('firstName')
   }
@@ -48,29 +52,39 @@ export class RegisterComponent implements OnInit {
     
   constructor(
     private authService: AuthService,
+    private authFacadeService: AuthFacadeService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+
   }
 
   submit(){
     this.form.markAllAsTouched()
     if(this.form.invalid)return;
       this.authService.register(this.form.value)
+      .pipe(
+        catchError(({error}) => {
+          this.authFacadeService.setErrors(error.message);
+          return throwError(error)
+  
+
+        })
+      )
       .subscribe({
         next: res=>{
           if(res){
         this.router.navigate(['/auth/login'])
           }
-        },
-        error: ({error}) => {
-         
-          console.log(error.message)}
+        }
+      
         }
       )
     }
+
+    ngOnDestroy(): void {
+      this.authFacadeService.destroy()
+    }
+
   }
-
-
-

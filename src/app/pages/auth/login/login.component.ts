@@ -1,3 +1,5 @@
+import { catchError, throwError } from 'rxjs';
+import { AuthFacadeService } from './../auth-facade.service';
 import { AuthService } from './../../../core/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -9,7 +11,6 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  errorMessage?:string
   get getEmail(){
     return this.form.get('email')
   }
@@ -19,6 +20,7 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
+    private authFacadeService: AuthFacadeService,
     private router: Router
   ){}
 
@@ -38,14 +40,17 @@ export class LoginComponent {
       this.form.markAllAsTouched()
       if(this.form.invalid)return;
   
-      this.authService.login(this.form.value).subscribe({
+      this.authService.login(this.form.value)
+      .pipe(
+        catchError(({error}) => {
+          this.authFacadeService.setErrors(error.message);
+          return throwError(error)
+        })
+      )
+      .subscribe({
         next: res=>{
         console.log(res)
         this.router.navigate(['/home'])
-        },
-        error: ({error}) => {
-          this.errorMessage = error.message
-          console.log(this.errorMessage)
         }
         
       })}

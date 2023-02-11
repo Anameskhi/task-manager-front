@@ -10,7 +10,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
-  
+
+  errorMessage?: string
+
    constructor(
     private cookieStorageService: CookieStorageService,
      http: HttpClient
@@ -71,5 +73,11 @@ export class AuthService extends BaseService {
     this.cookieStorageService.deleteCookie('token');
     this.cookieStorageService.deleteCookie('refreshToken');
   }
+
+  getError(error: string){
+    this.errorMessage = error
+    console.log(this.errorMessage)
+  }
+  
 
 }

@@ -17,33 +17,33 @@ export class BoardComponent implements OnInit {
   done?:any= [];
   animal?: string;
   
-  constructor(public dialog: MatDialog) {console.log(this.todo); }
-  openDialog(): void {
+  // constructor(public dialog: MatDialog) {console.log(this.todo); }
+  // openDialog(): void {
     
-    const dialogRef = this.dialog.open(AddTaskComponent, 
-      {
-      data: {todos: this.todo, dones: this.done},
-      }
+  //   const dialogRef = this.dialog.open(AddTaskComponent, 
+  //     {
+  //     data: {todos: this.todo, dones: this.done},
+  //     }
     
-    );
+  //   );
         
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed' + result);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed' + result);
       
-    });
-  }
+  //   });
+  // }
 
   ngOnInit() {
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
-  }
+  // drop(event: CdkDragDrop<string[]>) {
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //   } else {
+  //     transferArrayItem(event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex);
+  //   }
+  // }
 }

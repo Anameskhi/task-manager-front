@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  items: string[] = [];
+  tasks: string[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
   }
  
   onSubmit(newItemForm: NgForm) {
-    this.items.push(newItemForm.value.newItem);
+    this.tasks.push(newItemForm.value.newTask);
     newItemForm.reset();
   }
 }

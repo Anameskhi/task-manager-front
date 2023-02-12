@@ -10,12 +10,16 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ListComponent } from './list/list.component';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
   declarations: [
     BoardComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    ListComponent,
+    CardComponent
   ],
   entryComponents: [
     AddTaskComponent

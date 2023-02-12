@@ -1,0 +1,6 @@
+<div cdkDropList [cdkDropListData]="items" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let item of items" cdkDrag>{{item}}</div>
+</div>
+<form #newItemForm="ngForm" (ngSubmit)="onSubmit(newItemForm)">
+    <input name="newItem" ngModel type="text" placeholder="Enter a new item"><button type="submit">Add Item</button>
+</form>

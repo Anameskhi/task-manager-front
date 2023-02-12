@@ -14,14 +14,15 @@ import { AddTaskComponent } from './modals/add-task/add-task.component';
 export class BoardComponent implements OnInit {
   todo?:any = [];
 
-  done?:any= ['dasad','asdasd','asdasd'];
+  done?:any= [];
   animal?: string;
   
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {console.log(this.todo); }
   openDialog(): void {
+    
     const dialogRef = this.dialog.open(AddTaskComponent, 
       {
-      data: {todo: this.todo, done: this.done},
+      data: {todos: this.todo, dones: this.done},
       }
     
     );
@@ -29,10 +30,6 @@ export class BoardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed' + result);
       
-      // this.todo = result ;
-      // this.todo += result;
-      // console.log(result);  
-      // this.todo.push(result[result.length-1]);
     });
   }
 

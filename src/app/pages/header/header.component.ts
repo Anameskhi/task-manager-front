@@ -1,3 +1,4 @@
+import { NgToastService } from 'ng-angular-popup';
 import { CookieStorageService } from './../../core/services/cookie.service';
 import { AuthService } from './../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,5 +20,7 @@ export class HeaderComponent implements OnInit {
   
  logout(){
 this.authService.signOut()
+
+
 }
 }

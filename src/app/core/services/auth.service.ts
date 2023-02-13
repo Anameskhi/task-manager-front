@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { HttpClient } from '@angular/common/http';
 import { CookieStorageService } from './cookie.service';
 import { User } from './../interfaces/user';
@@ -15,6 +17,8 @@ export class AuthService extends BaseService {
 
    constructor(
     private cookieStorageService: CookieStorageService,
+    private toast: NgToastService,
+    private router: Router,
      http: HttpClient
    ){
      super(http)
@@ -69,6 +73,7 @@ export class AuthService extends BaseService {
   }
 
   signOut() {
+    this.toast.success({detail: 'SUCCESS', summary: "You have Logged out Successfully"})
     localStorage.clear();
     this.cookieStorageService.deleteCookie('token');
     this.cookieStorageService.deleteCookie('refreshToken');

@@ -9,18 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  firstName?: string
   constructor(
     private authService: AuthService,
+    private toastService: NgToastService,
     private cookieStorageService: CookieStorageService
   ) { }
 
   ngOnInit(): void {
+    let name = this.authService.getUser()?.firstName
+    this.firstName = name![0].toUpperCase() + name!.substr(1).toLowerCase()
   }
   
  logout(){
+this.toastService.success({detail: 'SUCCESS', summary: "You have Logged out Successfully"})
 this.authService.signOut()
 
 
 }
+
+
 }

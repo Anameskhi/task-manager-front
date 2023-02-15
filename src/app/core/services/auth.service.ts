@@ -50,15 +50,15 @@ export class AuthService extends BaseService {
     return this.post<AuthResponse>('auth/signup',payload)
   }
 
-  refreshToken(refresh: string): Observable<AuthResponse> {
-    return this.post('auth/token', { refreshToken: refresh });
+  refreshToken(refreshToken: string): Observable<AuthResponse> {
+    return this.post<AuthResponse>('auth/token', { refreshToken: refreshToken });
   }
 
-  get token(): string {
-    return this.cookieStorageService.getCookie('token');
+  getToken() {
+    return this.cookieStorageService.getCookie('token')
   }
 
-  get refreshTok(): string {
+  getRefreshTok(): string {
     return this.cookieStorageService.getCookie('refreshToken');
   }
   
@@ -67,13 +67,12 @@ export class AuthService extends BaseService {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
-  get user(): User | null{
+  getUser(): User | null{
     const user = localStorage.getItem('user')
     return user? JSON.parse(user) : null
   }
 
   signOut() {
-    this.toast.success({detail: 'SUCCESS', summary: "You have Logged out Successfully"})
     localStorage.clear();
     this.cookieStorageService.deleteCookie('token');
     this.cookieStorageService.deleteCookie('refreshToken');

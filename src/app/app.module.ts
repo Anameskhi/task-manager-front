@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgToastModule } from 'ng-angular-popup';
 import { CookieService } from 'ngx-cookie-service';
@@ -25,12 +26,12 @@ import { BoardComponent } from './pages/board/board.component';
 
   providers: [
     
-    // { 
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true
-    // },
-    CookieService
+    { 
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+    
   ],
   bootstrap: [AppComponent],
 })

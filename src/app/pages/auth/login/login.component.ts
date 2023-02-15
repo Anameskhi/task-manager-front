@@ -3,7 +3,7 @@ import { AuthFacadeService } from './../auth-facade.service';
 import { AuthService } from './../../../core/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnDestroy } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({

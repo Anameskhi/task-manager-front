@@ -1,3 +1,4 @@
+import { User } from './../../core/interfaces/user';
 import { NgToastService } from 'ng-angular-popup';
 import { CookieStorageService } from './../../core/services/cookie.service';
 import { AuthService } from './../../core/services/auth.service';
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  firstName?: string
+  
   constructor(
     private authService: AuthService,
     private toastService: NgToastService,
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     let name = this.authService.getUser()?.firstName
-    this.firstName = name![0].toUpperCase() + name!.substr(1).toLowerCase()
+   
   }
   
  logout(){

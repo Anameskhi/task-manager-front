@@ -19,6 +19,7 @@ export class CookieStorageService {
       domain: `${window.location.hostname}`
     })
   }
+  
 
   getCookie(name: string){
     return this.cookieService.get(name)

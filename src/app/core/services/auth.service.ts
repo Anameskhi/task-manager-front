@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './../interceptors/auth.interceptor';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClient } from '@angular/common/http';
@@ -56,6 +57,7 @@ export class AuthService extends BaseService {
 
   getToken() {
     return this.cookieStorageService.getCookie('token')
+
   }
 
   getRefreshTok(): string {

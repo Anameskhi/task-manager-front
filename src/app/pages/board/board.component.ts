@@ -1,3 +1,4 @@
+import { ProjectService } from './../../core/services/project.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private projectService: ProjectService
+  ) { }
 
   ngOnInit(): void {
+   
   }
 
 }

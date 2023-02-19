@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  
+  name?:string
   constructor(
     private authService: AuthService,
     private toastService: NgToastService,
@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let name = this.authService.getUser()?.firstName
+    const name = this.authService.getUser()?.firstName
+    this.name = name
    
   }
   

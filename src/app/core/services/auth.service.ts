@@ -59,6 +59,7 @@ export class AuthService extends BaseService {
     return this.cookieStorageService.getCookie('token')
 
   }
+ 
 
   getRefreshTok(): string {
     return this.cookieStorageService.getCookie('refreshToken');
@@ -78,6 +79,7 @@ export class AuthService extends BaseService {
     localStorage.clear();
     this.cookieStorageService.deleteCookie('token');
     this.cookieStorageService.deleteCookie('refreshToken');
+    this.cookieStorageService.deleteAllCookies()
   }
 
   getError(error: string){

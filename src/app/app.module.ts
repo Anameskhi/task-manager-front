@@ -1,3 +1,4 @@
+import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgToastModule } from 'ng-angular-popup';

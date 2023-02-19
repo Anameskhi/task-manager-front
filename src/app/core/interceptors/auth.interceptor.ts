@@ -6,10 +6,12 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse,
+  HttpClient
   
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,7 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private toastService: NgToastService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
 
@@ -30,21 +33,28 @@ export class AuthInterceptor implements HttpInterceptor {
         setHeaders: {Authorization: `Bearer ${accessToken}`}
       })
 
-    }else{
-      console.log(typeof(accessToken))
-
     }
     return next.handle(request)
-    // .pipe(
-    //   catchError((err: HttpErrorResponse)=>{
-    //     if(err instanceof HttpErrorResponse){
-    //       if(err.status === 401){
-    //         this.toastService.warning({detail: "Warning", summary: "Token is expired, Login again"})
-    //         this.router.navigate(['/auth/login'])
-    //       }
-    //     }
-    //    return throwError(()=> new Error('some other error occured'))
-    //   })
-    // )
+    .pipe(
+      catchError((err: HttpErrorResponse) =>{
+        if(err.status === 401){
+
+        }
+
+        return throwError(()=> new Error('some other error occured'))
+
+
+      }))
+      
+      // catchError((err: HttpErrorResponse)=>{
+      //   if(err instanceof HttpErrorResponse){
+      //     if(err.status === 401){
+      //       this.toastService.warning({detail: "Warning", summary: "Token is expired, Login again"})
+      //       this.router.navigate(['/auth/login'])
+      //     }
+      //   }
+      //  return throwError(()=> new Error('some other error occured'))
+      // })
+    
   }
 }

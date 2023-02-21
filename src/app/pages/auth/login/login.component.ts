@@ -52,6 +52,7 @@ export class LoginComponent implements  OnDestroy {
       )
       .subscribe({
         next: res=>{
+          AuthInterceptor.accessToken = res.token.accessToken
         this.toast.success({detail: "Success Message", summary: "Login is Success", duration: 4000})
         this.router.navigate(['/home'])
         },
@@ -64,4 +65,6 @@ export class LoginComponent implements  OnDestroy {
       ngOnDestroy(): void {
         this.authFacadeService.destroy()
       }
+
+   
 }

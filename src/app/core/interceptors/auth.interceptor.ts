@@ -8,13 +8,16 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
-  HttpClient
+  HttpClient,
+  HttpHeaders
   
 } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError, switchMap, BehaviorSubject, filter, take } from 'rxjs';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor{ 
+  private isRefreshing = false
+  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
 
   constructor(
     private authService: AuthService,
@@ -23,38 +26,62 @@ export class AuthInterceptor implements HttpInterceptor {
     private http: HttpClient
   ) {}
 
+  static accessToken = ''
 
+  intercept(
+    request: HttpRequest<unknown>, 
+    next: HttpHandler
+    ): Observable<HttpEvent<unknown>> {
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const accessToken = this.authService.getToken()
+   const accessToken = this.authService.getToken()
 
     if(accessToken){
-      request = request.clone({
-        setHeaders: {Authorization: `Bearer ${accessToken}`}
-      })
-
+       request = request.clone({
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${accessToken}`
+        })})
     }
     return next.handle(request)
-    .pipe(
-      catchError((err: HttpErrorResponse) =>{
-        if(err.status === 401){
+    .pipe(catchError(error => {
+      if(error instanceof HttpErrorResponse && error.status === 401){
+        return this.handle401Error(request,next)
+      }else{
+        return throwError(error)
+      }
+    }))
 
+  }
+
+  private handle401Error(request: HttpRequest<any>, next: HttpHandler){
+    if(!this.isRefreshing){
+      this.isRefreshing = true;
+      this.refreshTokenSubject.next(null);
+
+      return this.authService.refreshToken().pipe(
+        switchMap((token: any)=>{
+          this.isRefreshing = false;
+          this.refreshTokenSubject.next(token.accessToken);
+          return next.handle(request.clone({
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token.accessToken}`
         }
-
-        return throwError(()=> new Error('some other error occured'))
-
-
+        )
       }))
-      
-      // catchError((err: HttpErrorResponse)=>{
-      //   if(err instanceof HttpErrorResponse){
-      //     if(err.status === 401){
-      //       this.toastService.warning({detail: "Warning", summary: "Token is expired, Login again"})
-      //       this.router.navigate(['/auth/login'])
-      //     }
-      //   }
-      //  return throwError(()=> new Error('some other error occured'))
-      // })
-    
+        })
+      )
+
+    }else{
+      return this.refreshTokenSubject.pipe(
+        filter(token => token != null),
+        take(1),
+        switchMap(token =>{
+          return next.handle(request.clone({
+            headers: new HttpHeaders({
+              Authorization: `Bearer ${token.accessToken}`
+            })
+          }))
+        })
+      )
+    }
   }
 }

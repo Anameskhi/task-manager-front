@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
     <div class="list" cdkDropList [cdkDropListData]="tasks" (cdkDropListDropped)="drop($event)">
         <mat-card class="list-item" *ngFor="let task of tasks" cdkDrag>
             <mat-card-content>

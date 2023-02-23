@@ -6,4 +6,14 @@ button {
     display: flex;
     flex-direction: row;
     margin: 10px;
+    .col-cont{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .sm-cont{
+        display: flex;
+        flex-direction: row;
+        
+    }
 }

@@ -1,8 +1,32 @@
-<mat-toolbar color="primary" class="toolbar">
-    <div>
-      <span>home</span>
-      <span>boards</span>
+<mat-toolbar class="toolbar">
+    <div class="left-links">
+      <div><a routerLink="/home"><img src="../../../assets/images/home.png" alt="home"></a></div>
+      <div><a routerLink="/home/createboard">boards</a></div>
     </div>
-    <div>Trello</div>
-    <div class="user">user</div>
+    <div class="trello">
+      <img src="assets/images/logo.png" alt="logo">
+      <p>Trello</p>
+    </div>
+    <img src="assets/images/clipart915439.png" alt="user">
+
 </mat-toolbar>
+<mat-toolbar class="toolbar-secondary">
+    <div>board name</div>
+    <img src="assets/images/clipart915439.png" alt="user">
+    <div class="right-links">
+      <div><p>invite</p></div>
+      <div><p><img src="../../../assets/images/setting.png" alt="setting"></p></div>
+      <div><p><img src="../../../assets/images/gallery.png" alt="gallery"></p></div>
+    </div>
+
+</mat-toolbar>
+
+<div class="root">
+  <div class="board">
+    <div class="board-wrapper">
+      <app-card></app-card>
+    </div>
+
+  </div>
+
+</div>

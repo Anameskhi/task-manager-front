@@ -54,7 +54,10 @@
 
     text-align: center;
     align-items: center;
+    
   }
+  
+
   .color-box {
     margin: 20px 20px 20px 0px;
     width: 40px !important;
@@ -63,6 +66,7 @@
     border: 1px solid black;
     cursor: pointer;
     outline: none;
+    overflow: hidden;
   }
   .color-box:focus {
     border: 2px solid red;

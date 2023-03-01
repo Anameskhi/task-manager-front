@@ -11,6 +11,7 @@ import { ConstructinComponent } from './constructin/constructin.component';
 
 import { HeaderComponent } from '../header/header.component';
 
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -18,6 +19,7 @@ import { HeaderComponent } from '../header/header.component';
     ConstructinComponent,
 
     HeaderComponent,
+      
   ],
   imports: [
     CommonModule,

@@ -1,104 +1,59 @@
-<div class="form-cont">
-  <div
-    class="project-blueprint"
-    [ngStyle]="{ background: color }"
-    [ngStyle]="{ 'background-image': 'url(' + background + ')' }"
-  >
-    <div class="background-img"></div>
-    <div class="icon-div">
-      <img src="assets/images/trello-icon.png" alt="trello-icon" />
-    </div>
-    <div class="layout-img">
-      <div>
-        <img src="assets/images/alignment_flow1.png" alt="alignment_flow1" />
-      </div>
-      <div>
-        <img src="assets/images/alignment_flow2.png" alt="alignment_flow2" />
-      </div>
-      <div>
-        <img src="assets/images/alignment_flow1.png" alt="alignment_flow1" />
+<h1>Board feature</h1>
+
+<form [formGroup]="boardForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Board Name</label>
+    <input type="text" id="name" name="name" formControlName="name" />
+  </div>
+  <div>
+    <label>Description</label>
+    <input
+      type="text"
+      id="description"
+      name="Description"
+      formControlName="description"
+    />
+  </div>
+
+  <button (click)="addColumn()">Add Column</button>
+  <div formArrayName="columns">
+    <div *ngFor="let column of columnArr.controls; let i = index">
+      <div [formGroupName]="i">
+        <div>
+          <label>Column name</label>
+          <input
+            type="text"
+            id="column-name"
+            name="column-name"
+            formControlName="name"
+          />
+        </div>
+        <div>
+          <label>Description</label>
+          <input
+            type="text"
+            id="column-description"
+            name="column-description"
+            formControlName="description"
+          />
+        </div>
+        <div>
+          <label>Task status</label>
+          <select
+            name=""
+            id=""
+            id="tasl-status"
+            name="task status"
+            formControlName="taskStatus"
+          >
+            <option value="todo">ToDo</option>
+            <option value="in progress">In Progress</option>
+            <option value="done">done</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" ngModel required />
-    </div>
-    <div>
-      <label for="abbreviation">Abbreviation</label>
-      <input
-        type="text"
-        id="abbreviation"
-        name="abbreviation"
-        ngModel
-        required
-      />
-    </div>
-    <div>
-      <label for="color">Background</label>
-      <div class="color-box-cont">
-        <div *ngFor="let colors of backgroundColor">
-          <button
-            type="button"
-            class="color-box"
-            (click)="onColor(colors); background = ' '"
-            [ngStyle]="{ 'background-color': colors }"
-          ></button>
-        </div>
-
-        <input
-          type="color"
-          id="color-picker"
-          name="color"
-          ngModel
-          [(ngModel)]="color"
-          class="color-box color-picker"
-        />
-      </div>
-    </div>
-    <div class="color-box-cont">
-      <div *ngFor="let img of backgroundImg">
-        <button
-          class="img-box"
-          type="button"
-          (click)="onColor(img)"
-          [ngStyle]="{ 'background-image': 'url(' + img + ')' }"
-        ></button>
-      </div>
-      <div></div>
-    </div>
-    <input
-      type="text"
-      id="color"
-      name="color"
-      ngModel
-      style="width: 70%"
-      [(ngModel)]="background"
-      placeholder="Choose one above or Create your own"
-      required
-    />
-    <div>
-      <label for="description">Description</label>
-      <textarea
-        ngModel
-        name="description"
-        id="description"
-        cols="30"
-        rows="10"
-        required
-      ></textarea>
-      
-    </div>
-    <div style="text-align: center">
-      <button
-        type="submit"
-        [ngClass]="{ 'submit-btn': f.valid }"
-        [disabled]="!f.valid || background == ' '"
-      >
-        Create Project
-      </button>
-    </div>
-  </form>
-</div>
+  <button type="submit">Add Board</button>
+</form>
+<button>ADD Users</button>

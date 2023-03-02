@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { validateBasis } from '@angular/flex-layout';
 import {
   FormArray,
@@ -10,6 +11,9 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/core/services';
 import { HttpBoardService } from 'src/app/core/services/http-board.service';
+import { NgForm } from '@angular/forms';
+import { Route, Router, RouterLink } from '@angular/router';
+import { BoardFormService } from 'src/app/core/services/board-form.service';
 
 @Component({
   selector: 'app-project-form',
@@ -17,9 +21,20 @@ import { HttpBoardService } from 'src/app/core/services/http-board.service';
   styleUrls: ['./board-form.component.scss'],
 })
 export class BoardFormComponent implements OnInit {
+
   boardForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private httpBoard: HttpBoardService) {}
+
+
+  backgroundColor: string[] = [];
+  backgroundImg: string[] = [];
+  color = '';
+  background =
+    'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
+  constructor(
+    private boardFormSrv: BoardFormService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.boardForm = this.fb.group({
@@ -46,11 +61,14 @@ export class BoardFormComponent implements OnInit {
       })
     );
   }
+
   onSubmit() {
     console.log(this.boardForm.value);
 
     this.httpBoard
       .addBoard(this.boardForm.value)
       .subscribe((res) => console.log(res));
+
+
   }
 }

@@ -14,8 +14,9 @@
       formControlName="description"
     />
   </div>
-
-  <button (click)="addColumn()">Add Column</button>
+  <div>
+    <button type="button" (click)="addColumn()">Add Column</button>
+  </div>
   <div formArrayName="columns">
     <div *ngFor="let column of columnArr.controls; let i = index">
       <div [formGroupName]="i">
@@ -46,9 +47,9 @@
             name="task status"
             formControlName="taskStatus"
           >
-            <option value="todo">ToDo</option>
-            <option value="in progress">In Progress</option>
-            <option value="done">done</option>
+            <option value="ToDo">To Do</option>
+            <option value="InProgress">In Progress</option>
+            <option value="Done">done</option>
           </select>
         </div>
       </div>

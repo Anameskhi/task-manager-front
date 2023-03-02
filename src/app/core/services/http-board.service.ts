@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Board } from '../interfaces/board';
+import { IBoard } from '../interfaces/board';
 import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpBoardService extends BaseService {
-  addBoard(board: Board): Observable<any> {
+  addBoard(board: any): Observable<IBoard> {
     console.log(board);
-    return this.post<any>('board', board);
+    return this.post<IBoard>('board', board);
   }
+  
 }

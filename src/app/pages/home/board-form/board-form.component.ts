@@ -7,6 +7,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/core/services';
 import { HttpBoardService } from 'src/app/core/services/http-board.service';
 
 @Component({
@@ -46,6 +48,7 @@ export class BoardFormComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.boardForm.value);
+
     this.httpBoard
       .addBoard(this.boardForm.value)
       .subscribe((res) => console.log(res));

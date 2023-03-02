@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IProject } from 'src/app/core/interfaces/project';
+import { ProjectService } from 'src/app/core/services';
 import { BoardFormService } from 'src/app/core/services/board-form.service';
 import { HttpProjectService } from 'src/app/core/services/http-project.service';
 
@@ -14,9 +16,15 @@ export class ProjectFormComponent implements OnInit {
   backgroundImg: string[] = [];
   createProject!: FormGroup;
   color = '';
+  fullProjectId: any;
   background =
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
-  constructor(private boardFormSrv: BoardFormService,private httpProject:HttpProjectService, private router:Router) {}
+  constructor(
+    private boardFormSrv: BoardFormService,
+    private httpProjectService: HttpProjectService,
+    private router: Router,
+    private projectService:ProjectService
+  ) {}
   ngOnInit(): void {
     this.backgroundColor = this.boardFormSrv.boardColors;
     this.backgroundImg = this.boardFormSrv.boardImages;
@@ -34,10 +42,17 @@ export class ProjectFormComponent implements OnInit {
     this.background = colors;
   }
   onSubmit() {
-    this.httpProject.createProject(this.createProject.value).subscribe((res)=>{
-      console.log(res);
-    })
-    this.router.navigate(['home/BoardForm'])
+    
+    this.httpProjectService
+      .createProject(this.createProject.value)
+      .subscribe((res) => {
+        this.fullProjectId = res.id;
+       this.projectService.setLocal(res)
+       
+        console.log(this.fullProjectId);
+        this.router.navigate(['home/BoardForm/', this.fullProjectId])
+      });
+
     console.log(this.createProject.value);
   }
 }

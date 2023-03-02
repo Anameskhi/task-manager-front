@@ -29,7 +29,7 @@ const routes: Routes = [
         component: ProjectFormComponent,
       },
       {
-        path: 'BoardForm',
+        path: 'BoardForm/:id',
         loadChildren: () =>
           import('./board-form/board-form.module').then(
             (m) => m.BoardFormModule

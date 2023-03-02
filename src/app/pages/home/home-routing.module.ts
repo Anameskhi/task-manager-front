@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoardFormComponent } from './board-form/board-form.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
 import { ConstructinComponent } from './constructin/constructin.component';
 import { HomeStartComponent } from './home-start/home-start.component';
 import { HomeComponent } from './home.component';
+import { BoardFormComponent } from './board-form/board-form.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,15 @@ const routes: Routes = [
       },
 
       {
-        path: 'boardForm',
+        path: 'ProjectForm',
+        loadChildren: () =>
+          import('./project-form/project-form.module').then(
+            (m) => m.ProjectFormModule
+          ),
+        component: ProjectFormComponent,
+      },
+      {
+        path: 'BoardForm/:id',
         loadChildren: () =>
           import('./board-form/board-form.module').then(
             (m) => m.BoardFormModule

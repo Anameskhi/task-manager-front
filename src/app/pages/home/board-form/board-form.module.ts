@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { BoardFormComponent } from './board-form.component';
-import { FormsModule } from '@angular/forms';
-import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [BoardFormComponent],
-  imports: [CommonModule, FormsModule, MatMenuModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
+  ]
 })
-export class BoardFormModule {}
+export class BoardFormModule { }

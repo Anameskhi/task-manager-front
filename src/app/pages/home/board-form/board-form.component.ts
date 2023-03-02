@@ -1,14 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+
+import { validateBasis } from '@angular/flex-layout';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/core/services';
+import { HttpBoardService } from 'src/app/core/services/http-board.service';
 import { NgForm } from '@angular/forms';
 import { Route, Router, RouterLink } from '@angular/router';
 import { BoardFormService } from 'src/app/core/services/board-form.service';
 
 @Component({
-  selector: 'app-board-form',
+  selector: 'app-project-form',
   templateUrl: './board-form.component.html',
   styleUrls: ['./board-form.component.scss'],
 })
 export class BoardFormComponent implements OnInit {
+
+  boardForm!: FormGroup;
+
+  constructor(private fb: FormBuilder, private httpBoard: HttpBoardService) {}
+
+
   backgroundColor: string[] = [];
   backgroundImg: string[] = [];
   color = '';
@@ -17,18 +35,40 @@ export class BoardFormComponent implements OnInit {
   constructor(
     private boardFormSrv: BoardFormService,
     private router: Router) {}
+
   ngOnInit(): void {
-    this.backgroundColor = this.boardFormSrv.boardColors;
-    this.backgroundImg = this.boardFormSrv.boardImages;
+    this.boardForm = this.fb.group({
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      position: new FormControl(0),
+      columns: this.fb.array([]),
+    });
+  }
+  get columnArr() {
+    return this.boardForm.controls['columns'] as FormArray;
   }
 
-  onColor(colors: string) {
-    this.color = colors;
-    this.background = colors;
+  addColumn() {
+    this.columnArr.push(
+      new FormGroup({
+        name: new FormControl('', Validators.required),
+        description: new FormControl('', Validators.required),
+        position: new FormControl(
+          this.columnArr.length + 1,
+          Validators.required
+        ),
+        taskStatus: new FormControl('', Validators.required),
+      })
+    );
   }
-  onSubmit(form: NgForm) {
-    console.log(form);
-    this.router.navigate(['/board'])
-    
+
+  onSubmit() {
+    console.log(this.boardForm.value);
+
+    this.httpBoard
+      .addBoard(this.boardForm.value)
+      .subscribe((res) => console.log(res));
+
+
   }
 }

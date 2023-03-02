@@ -1,58 +1,8 @@
-.form-cont {
-  display: flex;
-  align-items: center;
-}
-
-.project-blueprint {
-  width: 600px;
-  height: 400px;
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 20px 50px 0px;
-  border-radius: 10px;
-}
-.layout-img {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  img {
-    width: 150px;
-
-    margin-top: 50px;
-  }
-}
-
-.icon-div {
-  width: 50px;
-  margin: auto;
-  margin-top: 50px;
-}
-.icon-div img {
-  width: 50px;
-}
-
-.form {
-  display: grid;
-  gap: 10px;
-  font-size: 1.2rem;
-  padding: 20px;
-  input[type="text"],
-  textarea {
-    width: 100%;
-    resize: none;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 2px solid #a9c3e9;
-    outline: #a9c3e9;
-  }
-
-  .color-box-cont {
-    display: flex;
-
+*{
     text-align: center;
+
+}
+
     align-items: center;
     
   }
@@ -106,3 +56,4 @@ button:last-child {
   cursor: pointer !important;
   background-color: rgba(38, 128, 0, 0.777) !important;
 }
+

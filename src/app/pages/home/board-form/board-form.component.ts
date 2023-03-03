@@ -24,7 +24,12 @@ export class BoardFormComponent implements OnInit {
 
   boardForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private httpBoard: HttpBoardService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private httpBoard: HttpBoardService,
+    private boardFormSrv: BoardFormService,
+    private router: Router
+    ) {}
 
 
   backgroundColor: string[] = [];
@@ -32,9 +37,7 @@ export class BoardFormComponent implements OnInit {
   color = '';
   background =
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
-  constructor(
-    private boardFormSrv: BoardFormService,
-    private router: Router) {}
+ 
 
   ngOnInit(): void {
     this.boardForm = this.fb.group({

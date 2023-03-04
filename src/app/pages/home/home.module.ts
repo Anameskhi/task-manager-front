@@ -29,7 +29,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ConstructinComponent,
 
     HeaderComponent,
-      IssueTypesComponent,
+    IssueTypesComponent,
+    
       
   ],
   imports: [

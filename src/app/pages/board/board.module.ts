@@ -39,6 +39,9 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatCardModule,
 
+  ],
+  exports: [
+    BoardComponent
   ]
 })
 export class BoardModule { }

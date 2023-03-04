@@ -3,6 +3,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './pages/board/board.component';
+import { MainLayoutComponent } from './features/main-layout.component';
 
 
 const routes: Routes = [
@@ -11,11 +12,19 @@ const routes: Routes = [
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full'
-  },{
-    path: 'home',
-    canActivate:[AuthGuard],
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    canActivate:[AuthGuard],
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+      },
+    ]
+  }
+  ,
   {
     path: 'auth',
     canActivate:[LoginGuard],

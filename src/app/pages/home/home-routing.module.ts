@@ -7,6 +7,8 @@ import { HomeComponent } from './home.component';
 import { BoardFormComponent } from './board-form/board-form.component';
 import { IssueTypesComponent } from './issue-types/issue-types.component';
 
+
+
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +22,7 @@ const routes: Routes = [
         path: 'contruction',
         component: ConstructinComponent,
       },
+      
 
       {
         path: 'ProjectForm',

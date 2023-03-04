@@ -6,10 +6,16 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root',
 })
-export class HttpBoardService extends BaseService {
+export class BoardService extends BaseService {
   addBoard(board: any): Observable<IBoard> {
     console.log(board);
     return this.post<IBoard>('board', board);
   }
-  
+  getboard():Observable<any>{
+    return this.get<any>('board');
+  }
+
+  getTarBoard(id:number,):Observable<any>{
+    return this.get<any>(`board/${id}`, )
+  }
 }

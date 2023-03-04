@@ -7,9 +7,12 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
 import { HomeStartComponent } from './home-start/home-start.component';
-import { ConstructinComponent } from './constructin/constructin.component';
+import { UsersComponent } from './users/users.component';
 
 import { HeaderComponent } from '../header/header.component';
+
+import { ProjectSelectorDirective } from 'src/app/shared/project-selector.directive';
+
 import { IssueTypesComponent } from './issue-types/issue-types.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
@@ -22,15 +25,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 
+
 @NgModule({
   declarations: [
     HomeComponent,
     HomeStartComponent,
-    ConstructinComponent,
+    
 
     HeaderComponent,
+
+    ProjectSelectorDirective,
+
       IssueTypesComponent,
-      
+
   ],
   imports: [
     CommonModule,

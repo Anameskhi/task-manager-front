@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectFormComponent } from './project-form/project-form.component';
-import { ConstructinComponent } from './constructin/constructin.component';
+import { UsersComponent } from './users/users.component';
 import { HomeStartComponent } from './home-start/home-start.component';
 import { HomeComponent } from './home.component';
 import { BoardFormComponent } from './board-form/board-form.component';
@@ -17,8 +17,13 @@ const routes: Routes = [
         component: HomeStartComponent,
       },
       {
-        path: 'contruction',
-        component: ConstructinComponent,
+        path: 'users',
+         loadChildren: () =>
+          import('./users/users.module').then(
+            (m) => m.UsersModule
+          ),
+        component: UsersComponent,
+       
       },
 
       {

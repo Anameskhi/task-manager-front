@@ -21,4 +21,12 @@ export class BaseService {
   get<T>(url: string): Observable<T>{
     return this.http.get<T>(this.apiUrl + url)
   }
+  
+  put<T>(url: string, body: any ): Observable<T>{
+    return this.http.put<T>(this.apiUrl + url, body)
+  }
+
+  delete<T>(url: string): Observable<T>{
+    return this.http.delete<T>(this.apiUrl + url)
+  }
 }

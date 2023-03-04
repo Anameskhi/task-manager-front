@@ -5,6 +5,7 @@ import { ConstructinComponent } from './constructin/constructin.component';
 import { HomeStartComponent } from './home-start/home-start.component';
 import { HomeComponent } from './home.component';
 import { BoardFormComponent } from './board-form/board-form.component';
+import { IssueTypesComponent } from './issue-types/issue-types.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
           ),
         component: BoardFormComponent,
       },
+      {
+        path: 'issueTypesForm/:id',
+        component: IssueTypesComponent,
+      }
     ],
   },
 ];

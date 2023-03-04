@@ -23,6 +23,7 @@ import { BoardFormService } from 'src/app/core/services/board-form.service';
 export class BoardFormComponent implements OnInit {
 
   boardForm!: FormGroup;
+  fullProjectId!: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -70,7 +71,12 @@ export class BoardFormComponent implements OnInit {
 
     this.httpBoard
       .addBoard(this.boardForm.value)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => {
+        this.fullProjectId = res.id;
+       
+        console.log(this.fullProjectId);
+        this.router.navigate(['home/issueTypesForm/', this.fullProjectId])
+      });
 
 
   }

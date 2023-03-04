@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectInterceptor } from './core/interceptors/project.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,7 @@ import { ProjectInterceptor } from './core/interceptors/project.interceptor';
     HttpClientModule,
     NgToastModule,
     MatSnackBarModule,
+    MatDialogModule
   ],
 
   providers: [

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IProject } from 'src/app/core/interfaces/project';
 import { ProjectService } from 'src/app/core/services';
 import { BoardFormService } from 'src/app/core/services/board-form.service';
-import { HttpProjectService } from 'src/app/core/services/http-project.service';
+
 
 @Component({
   selector: 'app-board-form',
@@ -21,9 +21,9 @@ export class ProjectFormComponent implements OnInit {
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
   constructor(
     private boardFormSrv: BoardFormService,
-    private httpProjectService: HttpProjectService,
+
     private router: Router,
-    private projectService:ProjectService
+    private projectService: ProjectService
   ) {}
   ngOnInit(): void {
     this.backgroundColor = this.boardFormSrv.boardColors;
@@ -42,15 +42,14 @@ export class ProjectFormComponent implements OnInit {
     this.background = colors;
   }
   onSubmit() {
-    
-    this.httpProjectService
+    this.projectService
       .createProject(this.createProject.value)
       .subscribe((res) => {
         this.fullProjectId = res.id;
-       this.projectService.setLocal(res)
-       
+        this.projectService.setLocal(res);
+
         console.log(this.fullProjectId);
-        this.router.navigate(['home/BoardForm/', this.fullProjectId])
+        this.router.navigate(['home/BoardForm/', this.fullProjectId]);
       });
 
     console.log(this.createProject.value);

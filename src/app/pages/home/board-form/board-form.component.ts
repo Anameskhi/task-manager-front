@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { HttpBoardService } from 'src/app/core/services/http-board.service';
+import { BoardService } from 'src/app/core/services/board.service';
 
 import { BoardFormService } from 'src/app/core/services/board-form.service';
 
@@ -21,7 +21,7 @@ export class BoardFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private httpBoard: HttpBoardService,
+    private Board: BoardService,
     private boardFormSrv: BoardFormService
   ) {}
 
@@ -60,7 +60,7 @@ export class BoardFormComponent implements OnInit {
   onSubmit() {
     console.log(this.boardForm.value);
 
-    this.httpBoard
+    this.Board
       .addBoard(this.boardForm.value)
       .subscribe((res) => console.log(res));
   }

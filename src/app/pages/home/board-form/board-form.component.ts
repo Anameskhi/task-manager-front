@@ -18,18 +18,26 @@ import { BoardFormService } from 'src/app/core/services/board-form.service';
 })
 export class BoardFormComponent implements OnInit {
   boardForm!: FormGroup;
+  fullProjectId!: any;
 
   constructor(
+
     private fb: FormBuilder,
     private Board: BoardService,
-    private boardFormSrv: BoardFormService
+    private boardFormSrv: BoardFormService, 
+    
+    
+   
+    private router: Router
   ) {}
+
 
   backgroundColor: string[] = [];
   backgroundImg: string[] = [];
   color = '';
   background =
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
+
 
   ngOnInit(): void {
     this.boardForm = this.fb.group({
@@ -62,6 +70,13 @@ export class BoardFormComponent implements OnInit {
 
     this.Board
       .addBoard(this.boardForm.value)
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => {
+        this.fullProjectId = res.id;
+       
+        console.log(this.fullProjectId);
+        this.router.navigate(['home/issueTypesForm/', this.fullProjectId])
+      });
+
+
   }
 }

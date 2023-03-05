@@ -10,13 +10,13 @@
       <p>Trello</p>
     </div>
     <div class="right-links">
-      <button>Add Project</button>
+      <button routerLink="project/add">Add Project</button>
       <select>Projects
         <option>Project 1</option>
         <option>Project 2</option>
         <option>Project 3</option>
       </select>
-      <div><a routerLink="settings"><img src="../../../assets/images/setting.png" alt="setting"></a></div>
+      <div><a routerLink="project/setting/about"><img src="../../../assets/images/setting.png" alt="setting"></a></div>
       <div><mat-icon class="logout" (click)="logout()" routerLink="/auth/login" routerLinkActive="router-link-active">exit_to_app</mat-icon></div>
     </div>
 

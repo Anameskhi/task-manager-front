@@ -25,7 +25,16 @@ const routes: Routes = [
       {
         path: 'project',
         loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)
-      }
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'roles',
+        loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
+      },
+     
     ]
   }
   ,
@@ -38,7 +47,9 @@ const routes: Routes = [
     path: 'board',
     canActivate:[AuthGuard],
     loadChildren: () => import('./pages/board/board.module').then(m => m.BoardModule)
-  }
+  },
+  
+  
 ];
 
 @NgModule({

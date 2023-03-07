@@ -1,44 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { ProjectRoutingModule } from './project-routing.module';
+import { ProjectformComponent } from './projectform/projectform.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectsettingComponent } from './projectsetting/projectsetting.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-
-import { HomeStartComponent } from './home-start/home-start.component';
-import { UsersComponent } from './users/users.component';
-
-import { HeaderComponent } from '../header/header.component';
-
-import { ProjectSelectorDirective } from 'src/app/shared/project-selector.directive';
-
-import { IssueTypesComponent } from './issue-types/issue-types.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 
-
 @NgModule({
   declarations: [
-    HomeComponent,
-    HomeStartComponent,
+    ProjectformComponent,
+    ProjectListComponent,
+    ProjectsettingComponent
     
-
-    HeaderComponent,
-    IssueTypesComponent,
-   
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    ProjectRoutingModule,
     MatSidenavModule,
     MatIconModule,
     MatMenuModule,
@@ -52,6 +42,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCheckboxModule,
     MatFormFieldModule,
     ReactiveFormsModule
-  ],
+  ]
 })
-export class HomeModule {}
+export class ProjectModule { }

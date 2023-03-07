@@ -3,6 +3,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './pages/board/board.component';
+import { MainLayoutComponent } from './features/main-layout.component';
 
 
 const routes: Routes = [
@@ -11,11 +12,32 @@ const routes: Routes = [
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full'
-  },{
-    path: 'home',
-    canActivate:[AuthGuard],
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    canActivate:[AuthGuard],
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: 'project',
+        loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'roles',
+        loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
+      },
+     
+    ]
+  }
+  ,
   {
     path: 'auth',
     canActivate:[LoginGuard],
@@ -25,7 +47,9 @@ const routes: Routes = [
     path: 'board',
     canActivate:[AuthGuard],
     loadChildren: () => import('./pages/board/board.module').then(m => m.BoardModule)
-  }
+  },
+  
+  
 ];
 
 @NgModule({

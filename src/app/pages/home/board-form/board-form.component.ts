@@ -10,6 +10,7 @@ import {
 import { BoardService } from 'src/app/core/services/board.service';
 
 import { BoardFormService } from 'src/app/core/services/board-form.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-form',

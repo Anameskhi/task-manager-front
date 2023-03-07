@@ -16,6 +16,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectInterceptor } from './core/interceptors/project.interceptor';
 import { MainLayoutModule } from './features/main-layout.module';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,8 @@ import { MainLayoutModule } from './features/main-layout.module';
     HttpClientModule,
     NgToastModule,
     MatSnackBarModule,
-    MainLayoutModule
+    MainLayoutModule,
+    MatDialogModule
   ],
 
   providers: [

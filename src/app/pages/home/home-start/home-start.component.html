@@ -1,0 +1,35 @@
+<div class="main-cont">
+  <div>
+    <h2>All projects</h2>
+    <div class="loop-cont">
+      <div *ngFor="let project of projects">
+        <div class="project-box" (click)="selectProject(project)">
+        <span>{{ project.name }}</span>
+      </div>
+      </div>
+      <div>
+       
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div>
+    <h2>myProjects</h2>
+
+    <div class="loop-cont">
+      <div *ngFor="let myProject of myProjects">
+        <div class="project-box" (click)="selectProject(myProject)">
+          <span >{{ myProject.name }}</span>
+        </div>
+      </div>
+      
+    </div>
+
+    <div>
+      <button>Add Project</button>
+      <div projectSelector [dropItems]="['a', 'b']"></div>
+    </div>
+  </div>
+

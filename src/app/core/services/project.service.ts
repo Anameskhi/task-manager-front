@@ -2,6 +2,7 @@ import { IProject } from './../interfaces/project';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
+import { PaginationResponse } from '../interfaces/pagination-response';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,8 @@ export class ProjectService extends BaseService {
   }
 
   //get project http calls
-  getProjects(): Observable<IProject[]> {
-    return this.get<IProject[]>('project');
+  getProjects(): Observable<PaginationResponse<IProject>> {
+    return this.get<PaginationResponse<IProject>>('project');
   }
 
   getMyProjects(): Observable<IProject[]> {
@@ -24,6 +25,9 @@ export class ProjectService extends BaseService {
 
   getProjectId(id: number): Observable<any> {
     return this.get<any>(`project/${id}`);
+  }
+  getAllProjects(): Observable<IProject[]> {
+    return this.get<IProject[]>('project/All');
   }
 
   //set and get project form local storage

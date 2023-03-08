@@ -12,15 +12,22 @@
     <div class="right-links">
       <button routerLink="home/ProjectForm">Add Project</button>
       
-        <div class="dropdown" >
-          <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <!-- <div class="dropdown" >
+          <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
            Choose a Project
           </button>
           <ul class="dropdown-menu">
-            <li *ngFor="let project of projects"><button class="dropdown-item" type="button">{{project.name}}</button></li>
+            <li *ngFor="let project of projects$ | async" [value]="project.id" data-content=
+  "<span class='badge badge-danger'>Pizzas</span>"><button class="dropdown-item" type="button">{{project.name}}</button></li>
           </ul>
-        </div>
+        </div> -->
 
+        <select class="selectpicker" >
+          <option *ngFor="let project of projects$ | async" [value]="project.id" data-content=
+  "<span class='badge badge-danger'>Pizzas</span>">
+              {{project.name}}
+          </option>
+      </select>
       <div><a routerLink="project/setting/about"><img src="../../../assets/images/setting.png" alt="setting"></a></div>
       <div><mat-icon class="logout" (click)="logout()" routerLink="/auth/login" routerLinkActive="router-link-active">exit_to_app</mat-icon></div>
     </div>

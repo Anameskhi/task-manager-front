@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
+import { Observable } from 'rxjs';
 import { IProject } from 'src/app/core/interfaces/project';
 import { AuthService, CookieStorageService, ProjectService } from 'src/app/core/services';
+import { ProjectFacadeService } from 'src/app/facades/project.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +11,18 @@ import { AuthService, CookieStorageService, ProjectService } from 'src/app/core/
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-projects:any
+projects = []
+
+projects$: Observable<IProject[]> = this.projectService.getAllProjects()
+
   constructor(
     private authService: AuthService,
     private toastService: NgToastService,
     private projectService: ProjectService,
-    private cookieStorageService: CookieStorageService
+    private projectFacadeService: ProjectFacadeService
   ) { }
 
   ngOnInit(): void {
-    this.getAllProject()
    
   }
   
@@ -27,10 +31,6 @@ this.toastService.success({detail: 'SUCCESS', summary: "You have Logged out Succ
 this.authService.signOut()
 }
 
-getAllProject(){
-  this.projectService.getProjects().subscribe((res) => {
-    this.projects = res;
-    console.log(res)
 
-})}
+
 }

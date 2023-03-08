@@ -30,17 +30,7 @@ export class ProjectService extends BaseService {
     return this.get<IProject[]>('project/All');
   }
 
-  //set and get project form local storage
-  setLocal(project: IProject) {
-    const jsonProject = JSON.stringify(project);
 
-    return localStorage.setItem('project', jsonProject);
-  }
-
-  getLocalProject(): IProject {
-    const project: any = localStorage.getItem('project');
-    return JSON.parse(project);
-  }
 
 
 }

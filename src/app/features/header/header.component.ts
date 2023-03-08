@@ -11,10 +11,10 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-projects = []
 
-projects$: Observable<IProject[]> = this.projectService.getAllProjects()
+projects$ = this.projectFacadeService.myProjects$
 currentProject?: IProject = this.projectFacadeService.getProject()
+
   constructor(
     private authService: AuthService,
     private toastService: NgToastService,
@@ -23,7 +23,7 @@ currentProject?: IProject = this.projectFacadeService.getProject()
   ) { }
 
   ngOnInit(): void {
-   
+   this.getMyProjects()
   }
   
  logout(){
@@ -34,6 +34,10 @@ this.authService.signOut()
 selectProject(projectId: number){
  console.log(projectId)
  this.projectFacadeService.setProject(projectId)
+}
+
+getMyProjects(){
+  this.projectFacadeService.getMyProjects()
 }
 
 }

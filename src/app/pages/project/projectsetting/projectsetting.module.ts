@@ -11,6 +11,12 @@ import { ProjectIssuetypeformComponent } from './components/project-issuetypefor
 import { ProjectEpicsComponent } from './components/project-epics/project-epics.component';
 import { ProjectEpicformComponent } from './components/project-epicform/project-epicform.component';
 import { ProjectUserformComponent } from './components/project-userform/project-userform.component';
+import { UsersRoutingModule } from '../../users/users-routing.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -28,7 +34,14 @@ import { ProjectUserformComponent } from './components/project-userform/project-
   imports: [
     CommonModule,
     ProjectsettingRoutingModule,
-    
+    CommonModule,
+    UsersRoutingModule,
+    MatTableModule, 
+    MatButtonModule, 
+    MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSelectModule
   ]
 })
 export class ProjectsettingModule { }

@@ -18,12 +18,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.showCreateBoard);
+    this.getAllProject()
+  }
 
+  getAllProject(){
     this.projectService.getProjects().subscribe((res) => {
       this.Projects = res;
-      console.log(this.Projects);
-    });
-
- 
-  }
+  
+  })}
 }

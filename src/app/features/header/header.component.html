@@ -11,11 +11,16 @@
     </div>
     <div class="right-links">
       <button routerLink="home/ProjectForm">Add Project</button>
-      <select>Projects
-        <option>Project 1</option>
-        <option>Project 2</option>
-        <option>Project 3</option>
-      </select>
+      
+        <div class="dropdown" >
+          <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Choose a Project
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let project of projects"><button class="dropdown-item" type="button">{{project.name}}</button></li>
+          </ul>
+        </div>
+
       <div><a routerLink="project/setting/about"><img src="../../../assets/images/setting.png" alt="setting"></a></div>
       <div><mat-icon class="logout" (click)="logout()" routerLink="/auth/login" routerLinkActive="router-link-active">exit_to_app</mat-icon></div>
     </div>

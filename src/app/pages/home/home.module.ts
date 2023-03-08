@@ -9,7 +9,6 @@ import { HomeComponent } from './home.component';
 import { HomeStartComponent } from './home-start/home-start.component';
 import { UsersComponent } from './users/users.component';
 
-import { HeaderComponent } from '../header/header.component';
 
 import { ProjectSelectorDirective } from 'src/app/shared/project-selector.directive';
 
@@ -32,7 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HomeStartComponent,
     
 
-    HeaderComponent,
+   
     IssueTypesComponent,
    
   ],

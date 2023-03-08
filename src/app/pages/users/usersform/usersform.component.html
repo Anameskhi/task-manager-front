@@ -1,32 +1,32 @@
 <h1 mat-dialog-title>Add Users</h1>
 <div mat-dialog-content [formGroup]="form">
   <form [formGroup]="form">
-    <div>
-      <label>First Name</label>
-      <input placeholder="First Name" formControlName="firstName" />
-    </div>
-
-    <div>
-      <label>Last Name</label>
-      <input  placeholder="Last Name" formControlName="lastName" />
-    </div>
-
-    <div>
-      <label>identityNumber</label>
-      <input matInput placeholder="identityNumber" formControlName="identityNumber" />
-    </div>
-
-    <div>
-      <label>email</label>
-      
-      <input  placeholder="Email" formControlName="email" />
-    </div>
-
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="First Name"  formControlName="firstName" >
+    </mat-form-field>
     
-      <label>mobileNumber</label>
-      <br>
-      <input  placeholder="mobileNumber" formControlName="mobileNumber" />
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Last Name"  formControlName="lastName" >
+    </mat-form-field>
+
+   <mat-form-field class="example-full-width">
+      <mat-label>Identity Number</mat-label>
+      <input matInput placeholder="Identity Number"  formControlName="identityNumber" >
+    </mat-form-field>
+
+  
+   <mat-form-field class="example-full-width">
+      <mat-label>email</mat-label>
+      <input matInput placeholder="Email"  formControlName="email" >
+    </mat-form-field>
     
+  <mat-form-field class="example-full-width">
+        <mat-label>Mobile Number</mat-label>
+        <input matInput placeholder="mobileNumber"  formControlName="mobileNumber" >
+    </mat-form-field>
   </form>
   <div mat-dialog-actions>
     <button mat-raised-button color="primary" (click)="dialogRef.close()">

@@ -23,8 +23,8 @@ export class ProjectService extends BaseService {
     return this.get<IProject[]>('project/my');
   }
 
-  getProjectId(id: number): Observable<any> {
-    return this.get<any>(`project/${id}`);
+  getProjectId(id: number): Observable<IProject> {
+    return this.get<IProject>(`project/${id}`);
   }
   getAllProjects(): Observable<IProject[]> {
     return this.get<IProject[]>('project/All');
@@ -37,8 +37,10 @@ export class ProjectService extends BaseService {
     return localStorage.setItem('project', jsonProject);
   }
 
-  getLocalProject() {
+  getLocalProject(): IProject {
     const project: any = localStorage.getItem('project');
     return JSON.parse(project);
   }
+
+
 }

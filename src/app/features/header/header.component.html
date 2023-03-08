@@ -22,8 +22,8 @@
           </ul>
         </div> -->
 
-        <select class="selectpicker" >
-          <option *ngFor="let project of projects$ | async" [value]="project.id" data-content=
+        <select [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)" class="selectpicker" >
+          <option *ngFor="let project of projects$ | async" [value]="project.id"  data-content=
   "<span class='badge badge-danger'>Pizzas</span>">
               {{project.name}}
           </option>

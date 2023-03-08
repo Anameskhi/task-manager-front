@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 projects = []
 
 projects$: Observable<IProject[]> = this.projectService.getAllProjects()
-
+currentProject?: IProject = this.projectFacadeService.getProject()
   constructor(
     private authService: AuthService,
     private toastService: NgToastService,
@@ -31,6 +31,9 @@ this.toastService.success({detail: 'SUCCESS', summary: "You have Logged out Succ
 this.authService.signOut()
 }
 
-
+selectProject(projectId: number){
+ console.log(projectId)
+ this.projectFacadeService.setProject(projectId)
+}
 
 }

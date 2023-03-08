@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectformComponent } from './projectform/projectform.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 const routes: Routes = [
   {
@@ -10,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: ProjectformComponent
+    component: AddEditComponent
   },
   {
     path: 'edit/:id',
-    component: ProjectformComponent
+    component: AddEditComponent
   },
   {
     path: 'setting',

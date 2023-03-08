@@ -17,11 +17,10 @@ export class ProjectFacadeService {
         localStorage.setItem('project',JSON.stringify(project))
       }
     )
-    
   }
 
   getProject(): IProject{
     const project = localStorage.getItem('project');
-   return project? JSON.parse('project') : null
+   return project? JSON.parse(project) : null
   }
 }

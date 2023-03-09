@@ -17,13 +17,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 
 @NgModule({
   declarations: [
     ProjectformComponent,
     ProjectListComponent,
-    ProjectsettingComponent
+    ProjectsettingComponent,
+    AddEditComponent
     
   ],
   imports: [

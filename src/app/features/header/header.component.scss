@@ -54,7 +54,7 @@
             width: 15px;
             height: 15px;            
         }
-        div,button{
+        div,button,select{
            background-color: #edf2f7;
            border-radius: 8px;
            color: black;
@@ -64,6 +64,7 @@
            padding: 0px 8px;
            font-size: 0.75rem;
            border: none;
+           cursor: pointer;
            a{
             text-decoration: none;
             font-size: 0.75rem;

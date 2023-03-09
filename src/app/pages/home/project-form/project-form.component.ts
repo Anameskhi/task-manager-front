@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { IProject } from 'src/app/core/interfaces/project';
 import { ProjectService } from 'src/app/core/services';
 import { BoardFormService } from 'src/app/core/services/board-form.service';
+import { ProjectFacadeService } from 'src/app/facades/project.service';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class ProjectFormComponent implements OnInit {
     private boardFormSrv: BoardFormService,
 
     private router: Router,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private projectFacadeService: ProjectFacadeService
   ) {}
   ngOnInit(): void {
     this.backgroundColor = this.boardFormSrv.boardColors;
@@ -46,7 +49,7 @@ export class ProjectFormComponent implements OnInit {
       .createProject(this.createProject.value)
       .subscribe((res) => {
         this.fullProjectId = res.id;
-        this.projectService.setLocal(res);
+        
 
         console.log(this.fullProjectId);
         this.router.navigate(['home/BoardForm/', this.fullProjectId]);

@@ -25,7 +25,7 @@
        
 
       
-        <select [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)" class="selectpicker" >
+        <select *ngIf="countOfMyProjects !== 0" [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)" class="selectpicker" >
           <option *ngFor="let project of projects$ | async" [value]="project.id"  data-content=
   "<span class='badge badge-danger'>Pizzas</span>">
               {{project.name}}

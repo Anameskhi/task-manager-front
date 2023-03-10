@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
-import { Observable } from 'rxjs';
+import { tap } from 'rxjs';
 import { IProject } from 'src/app/core/interfaces/project';
-import { AuthService, CookieStorageService, ProjectService } from 'src/app/core/services';
+import { AuthService, ProjectService } from 'src/app/core/services';
 import { ProjectFacadeService } from 'src/app/facades/project.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
 projects$ = this.projectFacadeService.myProjects$
 currentProject?: IProject = this.projectFacadeService.getProject()
+countOfMyProjects!:number 
 
   constructor(
     private authService: AuthService,
@@ -24,6 +25,7 @@ currentProject?: IProject = this.projectFacadeService.getProject()
 
   ngOnInit(): void {
    this.getMyProjects()
+   this.getEachProject()
   }
   
  logout(){
@@ -37,7 +39,14 @@ selectProject(projectId: number){
 }
 
 getMyProjects(){
-  this.projectFacadeService.getMyProjects()
+this.projectFacadeService.getMyProjects().subscribe()
+ 
+}
+getEachProject(){
+  this.projects$.subscribe(
+    p=>this.countOfMyProjects= Object.keys(p).length 
+  )
+  
 }
 
 }

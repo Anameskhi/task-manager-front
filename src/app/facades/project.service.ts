@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { IProject } from '../core/interfaces/project';
 import { ProjectService } from '../core/services';
 
@@ -8,8 +8,8 @@ import { ProjectService } from '../core/services';
 })
 export class ProjectFacadeService {
   // currentProject?: IProject = this.projectFacadeService.getProject()
-  myProjects: BehaviorSubject<IProject[]> = new BehaviorSubject<IProject[]>([])
-  myProjects$ = this.myProjects.asObservable()
+  myProjects: BehaviorSubject<IProject[]> = new BehaviorSubject<IProject[]>([]);
+  myProjects$ = this.myProjects.asObservable();
   
   constructor(
     private projectService: ProjectService
@@ -28,10 +28,10 @@ export class ProjectFacadeService {
    return project? JSON.parse(project) : null
   }
 
-  getMyProjects(){
-     return this.projectService.getMyProjects().subscribe((projects: IProject[]) =>{
-      this.myProjects.next(projects)
+  getMyProjects():Observable<IProject[]>{
+    return this.projectService.getMyProjects()
+    .pipe(
+     tap( projects => this.myProjects.next(projects)))
+   }
+ }
 
-    })
-  }
-}

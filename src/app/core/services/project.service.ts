@@ -10,7 +10,6 @@ import { PaginationResponse } from '../interfaces/pagination-response';
 export class ProjectService extends BaseService {
   //create project
   createProject(project: IProject): Observable<IProject> {
-    console.log(project);
     return this.post<IProject>('project', project);
   }
 

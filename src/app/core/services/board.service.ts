@@ -7,15 +7,15 @@ import { BaseService } from './base.service';
   providedIn: 'root',
 })
 export class BoardService extends BaseService {
-  addBoard(board: any): Observable<IBoard> {
+  addBoard(board: IBoard): Observable<IBoard> {
     console.log(board);
     return this.post<IBoard>('board', board);
   }
-  getboard():Observable<any>{
-    return this.get<any>('board');
+  getboard():Observable<IBoard[]>{
+    return this.get<IBoard[]>('board');
   }
 
-  getTarBoard(id:number,):Observable<any>{
+  getTarBoard(id:number):Observable<IBoard>{
     return this.get<any>(`board/${id}`, )
   }
 }

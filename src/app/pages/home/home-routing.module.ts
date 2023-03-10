@@ -13,7 +13,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    children: [
+   },
+   
       {
         path: '',
         component: HomeStartComponent,
@@ -49,8 +50,8 @@ const routes: Routes = [
         path: 'issueTypesForm/:id',
         component: IssueTypesComponent,
       }
-    ],
-  },
+    
+  
 ];
 
 @NgModule({

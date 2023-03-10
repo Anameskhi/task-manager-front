@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IssueTypesComponent } from '../../home/issue-types/issue-types.component';
 import { ProjectAboutComponent } from './components/project-about/project-about.component';
-import { ProjectBoardformComponent } from './components/project-boardform/project-boardform.component';
+
 import { ProjectBoardsComponent } from './components/project-boards/project-boards.component';
 import { ProjectEpicformComponent } from './components/project-epicform/project-epicform.component';
 import { ProjectEpicsComponent } from './components/project-epics/project-epics.component';
-import { ProjectIssuetypeformComponent } from './components/project-issuetypeform/project-issuetypeform.component';
+
 import { ProjectIssuetypesComponent } from './components/project-issuetypes/project-issuetypes.component';
 import { ProjectUserformComponent } from './components/project-userform/project-userform.component';
 import { ProjectsettingComponent } from './projectsetting.component';
@@ -19,73 +19,73 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'about',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'about',
-        component: ProjectAboutComponent
+        component: ProjectAboutComponent,
       },
       {
         path: 'boards',
         children: [
           {
             path: '',
-            component: ProjectBoardsComponent
+            component: ProjectBoardsComponent,
           },
           {
             path: 'add',
-            component: ProjectBoardformComponent
+            component: ProjectBoardsComponent,
           },
           {
             path: 'edit/:id',
-            component: ProjectBoardformComponent
-          }
-        ]
+            component: ProjectBoardsComponent,
+          },
+        ],
       },
       {
         path: 'issuetypes',
         children: [
           {
             path: '',
-            component: ProjectIssuetypesComponent
+            component: ProjectIssuetypesComponent,
           },
           {
             path: 'add',
-            component: ProjectIssuetypeformComponent
+            component: ProjectIssuetypesComponent,
           },
           {
             path: 'edit/:id',
-            component: ProjectIssuetypeformComponent
-          }
-        ]
+            component: ProjectIssuetypesComponent,
+          },
+        ],
       },
       {
         path: 'epics',
         children: [
           {
             path: '',
-            component: ProjectEpicsComponent
+            component: ProjectEpicsComponent,
           },
           {
             path: 'add',
-            component: ProjectEpicformComponent
+            component: ProjectEpicformComponent,
           },
           {
             path: 'edit/:id',
-            component: ProjectEpicformComponent
-          }
-        ]
+            component: ProjectEpicformComponent,
+          },
+        ],
       },
       {
         path: 'projectusers',
-        component: ProjectUserformComponent
-      }
-    ]
-  }
+        component: ProjectUserformComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProjectsettingRoutingModule { }
+export class ProjectsettingRoutingModule {}

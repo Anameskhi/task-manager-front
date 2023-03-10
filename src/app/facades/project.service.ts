@@ -8,8 +8,8 @@ import { ProjectService } from '../core/services';
 })
 export class ProjectFacadeService {
   // currentProject?: IProject = this.projectFacadeService.getProject()
-  myProjects: BehaviorSubject<IProject[]> = new BehaviorSubject<IProject[]>([])
-  myProjects$ = this.myProjects.asObservable()
+  myProjects: BehaviorSubject<IProject[]> = new BehaviorSubject<IProject[]>([]);
+  myProjects$ = this.myProjects.asObservable();
   
   constructor(
     private projectService: ProjectService

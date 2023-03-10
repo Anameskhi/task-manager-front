@@ -9,7 +9,7 @@ import { BaseService } from './base.service';
 export class IssueTypeService extends BaseService {
 
   getIssueTypes():Observable<IssueType[]> {
-    return this.get('issue-type');
+    return this.get<IssueType[]>('issue-type');
   }
 
   createIssueType(issueType: any): Observable<IssueType> {

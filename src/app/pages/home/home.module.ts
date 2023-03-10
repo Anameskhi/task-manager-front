@@ -7,10 +7,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
 import { HomeStartComponent } from './home-start/home-start.component';
-import { UsersComponent } from './users/users.component';
 
-
-import { ProjectSelectorDirective } from 'src/app/shared/project-selector.directive';
 
 import { IssueTypesComponent } from './issue-types/issue-types.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Subject, takeUntil } from 'rxjs';
+import { Iepic } from 'src/app/core/interfaces/epic';
+import { EpicsService } from 'src/app/core/services/epics.service';
 
 @Component({
   selector: 'app-project-epics',
   templateUrl: './project-epics.component.html',
-  styleUrls: ['./project-epics.component.scss']
+  styleUrls: ['./project-epics.component.scss'],
 })
-export class ProjectEpicsComponent {
+export class ProjectEpicsComponent implements OnInit, OnDestroy {
+  dataSource = new MatTableDataSource<Iepic>();
+  displayedColumns = ['id', 'name', 'createdAt', 'actions'];
+  sub$ = new Subject();
 
+  constructor(private epicsSrc: EpicsService) {}
+  ngOnInit(): void {
+    this.getEpics();
+  }
+
+  getEpics() {
+    this.epicsSrc
+      .getAllEpics()
+      .pipe(takeUntil(this.sub$))
+      .subscribe((res) => {
+        this.dataSource.data = res;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null);
+    this.sub$.complete();
+  }
 }

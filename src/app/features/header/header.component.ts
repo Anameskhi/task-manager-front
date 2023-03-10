@@ -39,7 +39,7 @@ selectProject(projectId: number){
 }
 
 getMyProjects(){
-this.projectFacadeService.getMyProjects()
+this.projectFacadeService.getMyProjects().subscribe()
  
 }
 getEachProject(){

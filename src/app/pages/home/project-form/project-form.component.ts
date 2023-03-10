@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { IProject } from 'src/app/core/interfaces/project';
 import { ProjectService } from 'src/app/core/services';
 import { BoardFormService } from 'src/app/core/services/board-form.service';
@@ -13,15 +13,16 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss'],
 })
-export class ProjectFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit, OnDestroy {
   backgroundColor: string[] = [];
   backgroundImg: string[] = [];
   createProject!: FormGroup;
   color = '';
-  fullProjectId: any;
   background =
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
-  constructor(
+  
+  sub$ = new Subject()
+    constructor(
     private boardFormSrv: BoardFormService,
 
     private router: Router,
@@ -39,7 +40,10 @@ export class ProjectFormComponent implements OnInit {
       color: new FormControl('', Validators.required),
     });
   }
-
+ngOnDestroy(): void {
+  this.sub$.next(null),
+  this.sub$.complete()
+}
   onColor(colors: string) {
     this.color = colors;
     this.background = colors;
@@ -47,12 +51,15 @@ export class ProjectFormComponent implements OnInit {
   onSubmit() {
     this.projectService
       .createProject(this.createProject.value)
+      .pipe(
+        takeUntil(this.sub$),
+        tap( (res) => this.projectFacadeService.setProject(res.id)),
+        switchMap( () => this.projectFacadeService.getMyProjects()) 
+       
+      )
       .subscribe((res) => {
-        this.fullProjectId = res.id;
         
-
-        console.log(this.fullProjectId);
-        this.router.navigate(['home/BoardForm/', this.fullProjectId]);
+        this.router.navigate(['project/setting']);
       });
 
     console.log(this.createProject.value);

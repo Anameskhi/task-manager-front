@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
-import { Iepic } from 'src/app/core/interfaces/epic';
+import { IEpic } from 'src/app/core/interfaces/epic';
 import { EpicsService } from 'src/app/core/services/epics.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { EpicsService } from 'src/app/core/services/epics.service';
   styleUrls: ['./project-epics.component.scss'],
 })
 export class ProjectEpicsComponent implements OnInit, OnDestroy {
-  dataSource = new MatTableDataSource<Iepic>();
+  dataSource = new MatTableDataSource<IEpic>();
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
   sub$ = new Subject();
 

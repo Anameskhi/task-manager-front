@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/core/interfaces';
-import { ProjectService } from 'src/app/core/services';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AddUsersComponent } from './add-users/add-users.component';
 import { UserRoleDialogComponent } from './user-role-dialog/user-role-dialog.component';

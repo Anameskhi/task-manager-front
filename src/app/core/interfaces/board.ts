@@ -1,6 +1,6 @@
-import { IProject } from "./project";
-
- 
+import {IProject} from "./project";
+import {ITask} from "./task";
+import { ETaskStatus } from "../enums/taskstatus.enum";
 
 export interface IBoard {
   id: number;
@@ -10,7 +10,7 @@ export interface IBoard {
   projectId: number;
   project: IProject;
   columns: Column[];
-  tasks: any;
+  tasks: ITask[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
@@ -21,12 +21,11 @@ export interface Column {
   name: string;
   description: string;
   position: number;
-  taskStatus: any;
+  taskStatus: ETaskStatus;
   boardId: number;
   board: string;
-  tasks: any;
+  tasks: ITask[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
 }
-

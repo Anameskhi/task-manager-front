@@ -11,14 +11,16 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
 })
 export class ProjectAboutComponent implements OnInit {
 
-  project?:IProject;
 
+  get project():IProject{
+    return this.projectSrv.getProject()
+  }
 
   constructor(private projectSrv:ProjectFacadeService){}
 
   ngOnInit(): void {
-    this.project = this.projectSrv.getProject()
-    console.log(this.project) 
+    
+   
   }
   
 

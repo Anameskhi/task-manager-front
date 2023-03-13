@@ -31,8 +31,16 @@ export class ProjectService extends BaseService {
     return this.get<IProject[]>('project/All');
   }
 
-  getProjectUsers(id: number):Observable<any>{
-    return this.get<any>(`project/users`)
+  getProjectUsers():Observable<IUser[]>{
+    return this.get<IUser[]>('project/users')
+  }
+
+  addUserProject(data:{
+    projectId: number,
+    userIds: number[]
+  }
+    ):Observable<any>{
+    return this.post(`project/users`,data)
   }
 
 

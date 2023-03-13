@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { IBoard, IUser } from 'src/app/core/interfaces';
 import { ProjectService } from 'src/app/core/services';
 import { UsersService } from 'src/app/core/services/users.service';
 import { ProjectFacadeService } from 'src/app/facades/project.service';
-import { UsersRolesComponent } from 'src/app/pages/users/users-roles/users-roles.component';
 
 @Component({
   selector: 'app-project-userform',
@@ -16,9 +16,10 @@ import { UsersRolesComponent } from 'src/app/pages/users/users-roles/users-roles
 })
 export class ProjectUserformComponent implements OnInit,OnDestroy{
   displayedColumns: string[] = ['Id', 'FirstName', 'LastName', 'CreatedAt', 'Action'];
-  dataSource = new MatTableDataSource<IBoard>()
+  dataSource = new MatTableDataSource<IUser>()
   sub$ = new Subject()
-  projectUserIds?: number
+  projectUserIds?: any
+  getAllUsers$: Observable<IUser[]> = this.userService.getAllUsers()
   // users: any ;
   constructor(
     private userService: UsersService,
@@ -29,13 +30,11 @@ export class ProjectUserformComponent implements OnInit,OnDestroy{
     
     ) {}
 
+    userForm: FormGroup = new FormGroup({
+      userId: new FormControl(null, [Validators.required])
+    })
+  chooseUserActive = false
   ngOnInit(): void {
-    // this.userService.getAllUsers().subscribe((res) => {
-    //   console.log(res);
-    //   this.users = res;
-    //   this.dataSource = res;
-    //   console.log(this.dataSource);
-    // });
     this.getProjectUsers()
   }
 
@@ -49,7 +48,7 @@ export class ProjectUserformComponent implements OnInit,OnDestroy{
   }
 
   getProjectUsers(){
-      this.projectService.getProjectUsers(this.projectId)
+      this.projectService.getProjectUsers()
       .pipe(takeUntil(this.sub$))
       .subscribe(users =>{
         this.projectUserIds  = users.map((user: IUser) => user.id);
@@ -59,18 +58,42 @@ export class ProjectUserformComponent implements OnInit,OnDestroy{
     })
     
   }
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(UsersRolesComponent);
-  //   return dialogRef
-   
-  // }
-  // openAddUsers(){
-  //   const dialogRef= this.dialog.open(UsersformComponent);
-  //   return dialogRef
-  // }
 
-  delete(id: number){
+  delete(currentId: number){
+    const userIds = this.projectUserIds.filter( (otherId: number) => otherId !== currentId)
+
+    this.projectService.addUserProject({ 
+      projectId: this.projectId, 
+      userIds
+    })
+    .pipe(takeUntil(this.sub$))
+    .subscribe((res)=>{
+      console.log(res)
+      this.getProjectUsers()
+    })
+    console.log(this.projectId)
+    console.log(userIds)
  
+
+  }
+  chooseUser(){
+    const userIds = [...this.projectUserIds,this.userForm.value.userId]
+
+    this.projectService.addUserProject({
+      projectId: this.projectId,
+      userIds
+    })
+    .pipe( takeUntil(this.sub$))
+    .subscribe(()=>{
+      this.getProjectUsers(),
+      this.chooseUserToggle()
+    })
+
+  }
+
+
+  chooseUserToggle(){
+    this.chooseUserActive = !this.chooseUserActive
 
   }
 

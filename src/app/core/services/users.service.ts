@@ -19,8 +19,8 @@ export class UsersService extends BaseService {
     return this.get<PaginationResponse<IUser>>('users')
 
   }
-  getAllUsers(): Observable<IUser> {
-    return this.get<IUser>('users/all');
+  getAllUsers(): Observable<IUser[]> {
+    return this.get<IUser[]>('users/all');
   }
 
   getUser(id: number):Observable<IUser>{
@@ -31,7 +31,7 @@ export class UsersService extends BaseService {
     return this.put<IUser>(`users/${id}`, user)
   }
 
-  deleteUser(id: string):Observable<IUser>{
+  deleteUser(id: number):Observable<IUser>{
     return this.delete<IUser>(`users/${id}`)
   }
 }

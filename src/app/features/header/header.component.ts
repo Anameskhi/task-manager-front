@@ -40,8 +40,9 @@ selectProject(projectId: number){
 
 getMyProjects(){
 this.projectFacadeService.getMyProjects().subscribe()
- 
 }
+
+
 getEachProject(){
   this.projects$.subscribe(
     p=>this.countOfMyProjects= Object.keys(p).length 

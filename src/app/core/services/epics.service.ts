@@ -9,8 +9,8 @@ import { BaseService } from './base.service';
 export class EpicsService extends BaseService {
 
 
-  createEpic(epic:Iepic){
-    return this.post<Iepic>('epics',epic)
+  createEpic(epic:IEpic){
+    return this.post<IEpic>('epics',epic)
   }
 
   getAllEpics(){

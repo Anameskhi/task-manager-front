@@ -2,7 +2,7 @@ import { LoginGuard } from './core/guards/login.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoardComponent } from './pages/board/board.component';
+
 import { MainLayoutComponent } from './features/main-layout.component';
 import { ProjectFormComponent } from './pages/project/project-form/project-form.component';
 

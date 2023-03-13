@@ -75,7 +75,7 @@ export class BoardFormComponent implements OnInit {
         this.fullProjectId = res.id;
        
         console.log(this.fullProjectId);
-        this.router.navigate(['home/issueTypesForm/', this.fullProjectId])
+       
       });
 
 

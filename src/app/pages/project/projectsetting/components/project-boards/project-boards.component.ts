@@ -53,6 +53,6 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
   }
   onBoard() {
     console.log(this.fullProjectId);
-    this.router.navigate(['home/BoardForm/', this.fullProjectId]);
+    this.router.navigate(['/project/setting/BoardForm',this.fullProjectId]);
   }
 }

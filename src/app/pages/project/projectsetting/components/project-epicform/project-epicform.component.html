@@ -1,1 +1,36 @@
-<p>project-epicform works!</p>
+<!-- <div>
+    <form [formGroup]="form">
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+  
+  
+        <button mat-raised-button color="primary" >Save</button>
+      </div>
+  
+    </form>
+  </div> -->
+<div>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="form-container">
+      <div>
+        <label>Name</label>
+        <input placeholder="Name" formControlName="name">
+      </div>
+      <div>
+        <mat-label>Description</mat-label>
+        <input placeholder="Description" formControlName="description">
+      </div>
+
+
+      <button type="submit" color="primary" >Save</button>
+    </div>
+
+  </form>
+</div>

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IssueTypesComponent } from '../../home/issue-types/issue-types.component';
+import { IssueTypesComponent } from './components/issue-types/issue-types.component';
+import { BoardFormComponent } from './components/board-form/board-form.component';
 import { ProjectAboutComponent } from './components/project-about/project-about.component';
 
 import { ProjectBoardsComponent } from './components/project-boards/project-boards.component';
 import { ProjectEpicformComponent } from './components/project-epicform/project-epicform.component';
 import { ProjectEpicsComponent } from './components/project-epics/project-epics.component';
+
 
 import { ProjectIssuetypesComponent } from './components/project-issuetypes/project-issuetypes.component';
 import { ProjectUserformComponent } from './components/project-userform/project-userform.component';
@@ -26,6 +28,18 @@ const routes: Routes = [
         component: ProjectAboutComponent,
       },
       {
+        path: 'BoardForm/:id',
+        loadChildren: () =>
+          import('./components/board-form/board-form.module').then(
+            (m) => m.BoardFormModule
+          ),
+        component: BoardFormComponent,
+      },
+      {
+        path: 'issueTypesForm/:id',
+        component: IssueTypesComponent,
+      },
+      {
         path: 'boards',
         children: [
           {
@@ -42,6 +56,7 @@ const routes: Routes = [
           },
         ],
       },
+
       {
         path: 'issuetypes',
         children: [

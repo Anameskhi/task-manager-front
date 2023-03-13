@@ -1,5 +1,5 @@
 import { Token } from './token';
-import { User } from './user';
+import { IUser } from './user';
 
 export interface Register {
   firstName: string;
@@ -14,6 +14,6 @@ export interface Login {
 }
 
 export interface AuthResponse {
-  user: User;
+  user: IUser;
   token: Token;
 }

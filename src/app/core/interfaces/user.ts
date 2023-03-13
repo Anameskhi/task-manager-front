@@ -1,4 +1,5 @@
-export interface User {
+export interface IUser {
+    map(arg0: (user: IUser) => number): number;
     id: number;
     createdAt: Date;
     firstName: string;

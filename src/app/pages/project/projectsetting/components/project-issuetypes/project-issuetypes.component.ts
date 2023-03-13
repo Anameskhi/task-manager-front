@@ -41,6 +41,6 @@ export class ProjectIssuetypesComponent implements OnInit,OnDestroy {
     this.sub$.complete()
   }
   onIssueType(){
-      this.router.navigate(['home/issueTypesForm/', this.fullProjectId])
+      this.router.navigate(['project/setting/issueTypesForm/', this.fullProjectId])
   }
 }

@@ -14,11 +14,11 @@ export class ProjectAboutComponent implements OnInit {
   project?:IProject;
 
 
-  constructor(private projectSrv:ProjectFacadeService){}
+  constructor(private projectFacadeSrv:ProjectFacadeService){}
 
   ngOnInit(): void {
-    this.project = this.projectSrv.getProject()
-    console.log(this.project) 
+    this.project = this.projectFacadeSrv.getProject()
+    
   }
   
 

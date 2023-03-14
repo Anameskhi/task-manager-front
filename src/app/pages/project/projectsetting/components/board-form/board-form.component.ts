@@ -10,7 +10,7 @@ import {
 import { BoardService } from 'src/app/core/services/board.service';
 
 import { BoardFormService } from 'src/app/core/services/board-form.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-form',
@@ -22,16 +22,13 @@ export class BoardFormComponent implements OnInit {
   fullProjectId!: any;
 
   constructor(
-
     private fb: FormBuilder,
     private Board: BoardService,
-    private boardFormSrv: BoardFormService, 
-    
-    
-   
+    private boardFormSrv: BoardFormService,
+    private activatedRoute: ActivatedRoute,
+
     private router: Router
   ) {}
-
 
   backgroundColor: string[] = [];
   backgroundImg: string[] = [];
@@ -39,9 +36,9 @@ export class BoardFormComponent implements OnInit {
   background =
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
 
-
   ngOnInit(): void {
     this.boardForm = this.fb.group({
+      id: new FormControl(null, Validators.required),
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       position: new FormControl(0),
@@ -55,6 +52,7 @@ export class BoardFormComponent implements OnInit {
   addColumn() {
     this.columnArr.push(
       new FormGroup({
+        id: new FormControl(null, Validators.required),
         name: new FormControl('', Validators.required),
         description: new FormControl('', Validators.required),
         position: new FormControl(
@@ -66,18 +64,32 @@ export class BoardFormComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    console.log(this.boardForm.value);
-
-    this.Board
-      .addBoard(this.boardForm.value)
-      .subscribe((res) => {
-        this.fullProjectId = res.id;
-       
-        console.log(this.fullProjectId);
-       
-      });
-
-
+  onDelete(){
+    
   }
+
+  onSubmit() {
+    let boardId: any;
+
+    this.activatedRoute.params.subscribe((res) => {
+      boardId = res;
+      console.log(boardId);
+    });
+
+    if (!boardId.id) {
+      this.Board.addBoard(this.boardForm.value).subscribe((res) => {
+        this.fullProjectId = res.id;
+
+        console.log(this.fullProjectId);
+      });
+    } else {
+      this.boardForm.value.id = boardId.id;
+
+      this.Board.updateBoard(this.boardForm.value).subscribe((res) => {
+        console.log(res);
+      });
+    }
+  }
+
+
 }

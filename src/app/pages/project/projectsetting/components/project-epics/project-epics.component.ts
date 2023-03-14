@@ -32,4 +32,13 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy {
     this.sub$.next(null);
     this.sub$.complete();
   }
+
+  onDelete(elementId: number) {
+    this.epicsSrc.deleteEpics(elementId).subscribe((res) => {
+      if(res){
+        this.getEpics()
+      }
+      console.log(res);
+    });
+  }
 }

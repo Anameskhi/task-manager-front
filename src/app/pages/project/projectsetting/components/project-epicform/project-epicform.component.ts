@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { validateBasis } from '@angular/flex-layout';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { EpicsService } from 'src/app/core/services/epics.service';
 
@@ -24,7 +25,8 @@ export class ProjectEpicformComponent implements OnInit, OnDestroy {
 
   constructor(
     private projectFacadeSrv: ProjectFacadeService,
-    private epicSrv: EpicsService
+    private epicSrv: EpicsService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -33,15 +35,25 @@ export class ProjectEpicformComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.form.value.id = this.projectId;
-
+    let boardId: any;
+    this.route.params.subscribe((res) => {
+      boardId = res;
+      this.form.value.id = boardId.id;
+    });
     console.log(this.form);
-    this.epicSrv
-      .createEpic(this.form.value)
-      .pipe(takeUntil(this.sub$))
-      .subscribe((res) => {
+    if (!boardId) {
+      this.epicSrv
+        .createEpic(this.form.value)
+        .pipe(takeUntil(this.sub$))
+        .subscribe((res) => {
+          console.log(res);
+        });
+    } else {
+      console.log('update');
+      this.epicSrv.updateEpics(this.form.value).subscribe((res) => {
         console.log(res);
       });
+    }
   }
 
   ngOnDestroy(): void {

@@ -28,6 +28,14 @@ const routes: Routes = [
         component: ProjectAboutComponent,
       },
       {
+        path: 'BoardForm',
+        loadChildren: () =>
+          import('./components/board-form/board-form.module').then(
+            (m) => m.BoardFormModule
+          ),
+        component: BoardFormComponent,
+      },
+      {
         path: 'BoardForm/:id',
         loadChildren: () =>
           import('./components/board-form/board-form.module').then(

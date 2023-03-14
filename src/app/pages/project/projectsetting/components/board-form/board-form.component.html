@@ -3,10 +3,7 @@
 <form [formGroup]="boardForm" (ngSubmit)="onSubmit()">
 
   <div>
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" formControlName="name">
-    </mat-form-field>
+    
     <label>Board Name</label>
     <input type="text" id="name" name="name" formControlName="name" />
   </div>
@@ -62,4 +59,4 @@
   </div>
   <button type="submit">Add Board</button>
 </form>
-<button>ADD Users</button>
+

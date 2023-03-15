@@ -1,6 +1,7 @@
 .form-cont {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .project-blueprint {
@@ -34,8 +35,6 @@
 }
 
 .form {
-  display: grid;
-  gap: 10px;
   font-size: 1.2rem;
   padding: 20px;
   input[type="text"],
@@ -101,4 +100,8 @@ button:last-child {
 .submit-btn:hover {
   cursor: pointer !important;
   background-color: rgb(38, 128, 0) !important;
+}
+
+label {
+  margin: 10px 0px 0px;
 }

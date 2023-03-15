@@ -24,7 +24,7 @@ export class BoardFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private Board: BoardService,
-    private boardFormSrv: BoardFormService,
+
     private activatedRoute: ActivatedRoute,
 
     private router: Router
@@ -64,9 +64,7 @@ export class BoardFormComponent implements OnInit {
     );
   }
 
-  onDelete(){
-    
-  }
+  onDelete() {}
 
   onSubmit() {
     let boardId: any;
@@ -79,7 +77,7 @@ export class BoardFormComponent implements OnInit {
     if (!boardId.id) {
       this.Board.addBoard(this.boardForm.value).subscribe((res) => {
         this.fullProjectId = res.id;
-
+        this.router.navigate(['/project/setting/boards']);
         console.log(this.fullProjectId);
       });
     } else {
@@ -87,9 +85,8 @@ export class BoardFormComponent implements OnInit {
 
       this.Board.updateBoard(this.boardForm.value).subscribe((res) => {
         console.log(res);
+        this.router.navigate(['/project/setting/boards']);
       });
     }
   }
-
-
 }

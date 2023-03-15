@@ -14,6 +14,8 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
   styleUrls: ['./project-boards.component.scss'],
 })
 export class ProjectBoardsComponent implements OnInit, OnDestroy {
+
+  loader=true
   constructor(
     private boardSrv: BoardService,
     private projectSrv: ProjectService,
@@ -43,6 +45,7 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
       .getboard()
       .pipe(takeUntil(this.sub$))
       .subscribe((boards) => {
+        this.loader=false
         console.log((this.dataSource.data = boards));
       });
   }

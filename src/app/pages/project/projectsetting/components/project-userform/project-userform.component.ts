@@ -16,7 +16,8 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
 })
 export class ProjectUserformComponent implements OnInit,OnDestroy{
   displayedColumns: string[] = ['Id', 'FirstName', 'LastName', 'CreatedAt', 'Action'];
-  dataSource = new MatTableDataSource<IUser>()
+  dataSource = new MatTableDataSource<IUser>();
+  loader=true;
   sub$ = new Subject()
   projectUserIds?: any
   getAllUsers$: Observable<IUser[]> = this.userService.getAllUsers()
@@ -53,7 +54,7 @@ export class ProjectUserformComponent implements OnInit,OnDestroy{
       .subscribe(users =>{
         this.projectUserIds  = users.map((user: IUser) => user.id);
         this.dataSource.data = users;
-       
+      this.loader=false
         console.log(users)
     })
     

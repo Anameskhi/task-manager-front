@@ -11,6 +11,7 @@ import { EpicsService } from 'src/app/core/services/epics.service';
 })
 export class ProjectEpicsComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<IEpic>();
+  loader = true;
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
   sub$ = new Subject();
 
@@ -24,6 +25,7 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy {
       .getAllEpics()
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
+        this.loader=false;
         this.dataSource.data = res;
       });
   }

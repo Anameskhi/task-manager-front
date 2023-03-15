@@ -19,6 +19,8 @@ export class ProjectIssuetypesComponent implements OnInit,OnDestroy {
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
 
   constructor(private issuetypeSrv: IssueTypeService, private router:Router,private projectFacadeSrv:ProjectFacadeService) {}
+  loader=true
+
   ngOnInit(): void {
     this.getIssueTypes();
    
@@ -32,6 +34,7 @@ export class ProjectIssuetypesComponent implements OnInit,OnDestroy {
       .getIssueTypes()
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
+        this.loader=false
         this.dataSource.data = res;
       });
   }

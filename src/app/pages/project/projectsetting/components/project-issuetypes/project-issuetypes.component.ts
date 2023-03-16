@@ -11,22 +11,25 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
   templateUrl: './project-issuetypes.component.html',
   styleUrls: ['./project-issuetypes.component.scss'],
 })
-export class ProjectIssuetypesComponent implements OnInit,OnDestroy {
+export class ProjectIssuetypesComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<IssueType>();
 
   sub$ = new Subject();
-  fullProjectId:any
+  fullProjectId: any;
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
 
-  constructor(private issuetypeSrv: IssueTypeService, private router:Router,private projectFacadeSrv:ProjectFacadeService) {}
-  loader=true
+  constructor(
+    private issuetypeSrv: IssueTypeService,
+    private router: Router,
+    private projectFacadeSrv: ProjectFacadeService
+  ) {}
+  loader = true;
 
   ngOnInit(): void {
     this.getIssueTypes();
-   
-    this.fullProjectId =  this.projectFacadeSrv.getProject().id
+
+    this.fullProjectId = this.projectFacadeSrv.getProject().id;
     console.log(this.fullProjectId);
-  
   }
 
   getIssueTypes() {
@@ -34,16 +37,25 @@ export class ProjectIssuetypesComponent implements OnInit,OnDestroy {
       .getIssueTypes()
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-        this.loader=false
+        this.loader = false;
         this.dataSource.data = res;
       });
   }
 
   ngOnDestroy(): void {
-    this.sub$.next(null)
-    this.sub$.complete()
+    this.sub$.next(null);
+    this.sub$.complete();
   }
-  onIssueType(){
-      this.router.navigate(['project/setting/issueTypesForm/', this.fullProjectId])
+  onIssueType() {
+    this.router.navigate(['project/setting/issueTypesForm/add']);
+  }
+
+  onDelete(id: any) {
+    this.issuetypeSrv.deleteIssueType(id).subscribe((res) => {
+      console.log(res);
+      if (res) {
+        this.getIssueTypes();
+      }
+    });
   }
 }

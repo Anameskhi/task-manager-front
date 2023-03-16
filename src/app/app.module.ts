@@ -30,7 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgToastModule,
     MatSnackBarModule,
     MainLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    
   ],
 
   providers: [

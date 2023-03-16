@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './board.component';
+import { CurrentBoardComponent } from './current-board/current-board.component';
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: '',
     component: BoardComponent,
+    children: [
+      {
+        path: ':id',
+        component: CurrentBoardComponent
+      }
+    ]
   }
 ];
 

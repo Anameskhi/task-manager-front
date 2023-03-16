@@ -1,7 +1,9 @@
+
 import {IUser} from "./user";
 import {IProject} from "./project";
 import {IssueType} from "./issue-type";
 import {IEpic} from "./epic";
+
 
 export interface ITask {
   id: number;
@@ -10,7 +12,9 @@ export interface ITask {
   issueTypeId: number;
   issueType?: IssueType;
   epicId: number;
+
   epic?: IEpic;
+
   projectId?: number;
   project?: IProject;
   boardId: number;
@@ -21,6 +25,7 @@ export interface ITask {
   priority: string;
   taskStatus: string;
   assigneeId: number;
+
   assignee: IUser;
   reporterId: number;
   reporter: IUser;
@@ -28,6 +33,7 @@ export interface ITask {
   createdBy: IUser;
   deletedById: number;
   deletedBy: IUser;
+
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

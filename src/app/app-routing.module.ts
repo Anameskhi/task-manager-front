@@ -4,7 +4,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainLayoutComponent } from './features/main-layout.component';
+
+import { BacklogComponent } from './pages/backlog/backlog.component';
+
 import { ProjectFormComponent } from './pages/project/project-form/project-form.component';
+
 
 
 const routes: Routes = [
@@ -44,7 +48,15 @@ const routes: Routes = [
         path: 'roles',
         loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
       },
-     
+      {
+        path: 'backlog',
+        component: BacklogComponent
+      }, 
+      {
+        path: 'board',
+        canActivate:[AuthGuard],
+        loadChildren: () => import('./pages/board/board.module').then(m => m.BoardModule)
+      }
     ]
   }
   ,
@@ -53,11 +65,7 @@ const routes: Routes = [
     canActivate:[LoginGuard],
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
-  {
-    path: 'board',
-    canActivate:[AuthGuard],
-    loadChildren: () => import('./pages/board/board.module').then(m => m.BoardModule)
-  },
+ 
   
   
 ];

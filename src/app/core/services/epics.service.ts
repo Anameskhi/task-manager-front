@@ -1,7 +1,9 @@
 import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { IEpic } from '../interfaces/epic';
+
 import { BaseService } from './base.service';
 
 @Injectable({
@@ -11,6 +13,7 @@ export class EpicsService extends BaseService {
   createEpic(epic: IEpic):Observable<IEpic> {
     return this.post<IEpic>('epics', epic);
   }
+
 
   getAllEpics():Observable<IEpic[]> {
     return this.get<IEpic[]>('epics');
@@ -28,4 +31,5 @@ export class EpicsService extends BaseService {
   deleteEpics(id:number){
     return this.delete(`epics/${id}`)
   }
+
 }

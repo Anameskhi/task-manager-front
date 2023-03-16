@@ -1,45 +1,26 @@
-<mat-toolbar class="toolbar">
-  <div class="left-links">
-    <div>
-      <a routerLink="/home"
-        ><img src="../../../assets/images/home.png" alt="home"
-      /></a>
-    </div>
-    <div><a routerLink="/home/createboard">boards</a></div>
-  </div>
-  <div class="trello">
-    <img src="assets/images/logo.png" alt="logo" />
-    <p>Trello</p>
-  </div>
-  <img src="assets/images/clipart915439.png" alt="user" />
-</mat-toolbar>
-<h3>All Boards</h3>
-<div *ngFor="let board of allBoard">
-  <button (click)="showBoard(board)">{{ board.name }}</button>
-
-
-</div>
-{{board}}
-
-
 <mat-toolbar class="toolbar-secondary">
-  <div>board name</div>
-  <img src="assets/images/clipart915439.png" alt="user" />
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu" #menuTrigger>Select Board<mat-icon>keyboard_arrow_down</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <ul>
+            <li *ngFor="let board of boards$ |async">
+              <a (click)="getCurrentBoard(board.id)" [routerLink]="['/board', board.id]">{{board.name}}</a>
+              
+            </li>
+          </ul>
+        </mat-menu>
+  </div>
+  <div class="user">{{this.user}}</div>
   <div class="right-links">
-    <div><p>invite</p></div>
-    <div>
-      <p><img src="../../../assets/images/setting.png" alt="setting" /></p>
-    </div>
-    <div>
-      <p><img src="../../../assets/images/gallery.png" alt="gallery" /></p>
-    </div>
+   <div class="btn-inv">+ Share</div>
+   <img src="../../../assets/images/gallery.png" alt="gallery" />
   </div>
 </mat-toolbar>
 
-<div class="root">
-  <div class="board">
-    <div class="board-wrapper">
-      <app-card></app-card>
-    </div>
+<div class="container">
+  <div class="content">
+    <router-outlet></router-outlet>
   </div>
 </div>
+
+

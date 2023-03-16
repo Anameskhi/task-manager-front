@@ -48,7 +48,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatOptionModule,
     MatSelectModule,
     MatDividerModule
-
+    
   ],
   exports: [
     BoardComponent

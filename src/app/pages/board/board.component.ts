@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services';
 import {MatMenuTrigger} from '@angular/material/menu';
-import { User } from 'src/app/core/interfaces';
+
 
 
 // import { Board } from 'src/app/models/board.model';

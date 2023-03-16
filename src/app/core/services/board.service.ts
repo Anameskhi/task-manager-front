@@ -11,9 +11,7 @@ export class BoardService extends BaseService {
     return this.post<IBoard>('board', board);
   }
 
-  updateBoard(board: any): Observable<IBoard> {
-    return this.put<IBoard>(`board/${board.id}`, board);
-  }
+  
   getboard(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');
   }
@@ -22,9 +20,7 @@ export class BoardService extends BaseService {
     return this.get<any>(`board/${id}`);
   }
 
-  deleteBoard(boardId: number): Observable<any> {
-    return this.delete(`board/${boardId}`);
-  }
+  
   updateBoard(data: any): Observable<IBoard> {
     return this.put<IBoard>(`board/${data.id}`, data);
   }

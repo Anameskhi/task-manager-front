@@ -2,10 +2,12 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Observable, shareReplay, Subject, takeUntil } from 'rxjs';
+import { IUser } from 'src/app/core/interfaces';
 import { Column, IBoard } from 'src/app/core/interfaces/board';
-import { Iepic } from 'src/app/core/interfaces/epic';
+import { IEpic } from 'src/app/core/interfaces/epic';
+;
 import { IssueType } from 'src/app/core/interfaces/issue-type';
-import { User } from 'src/app/core/interfaces/user';
+;
 import { ProjectService } from 'src/app/core/services';
 import { AddTaskService } from 'src/app/core/services/add-task.service';
 import { BoardService } from 'src/app/core/services/board.service';
@@ -36,8 +38,8 @@ export class AddTaskComponent implements OnInit, OnDestroy{
   sub$ = new Subject();
   boards$: Observable<IBoard[]> = this.boardService.getboard();
   types$: Observable<IssueType[]> = this.issueTypeService.getIssueTypes();
-  epics$: Observable<Iepic[]> = this.epicService.getAllEpics();
-  users$: Observable<User[]> = this.projectService.getProjectUsers()
+  epics$: Observable<IEpic[]> = this.epicService.getAllEpics();
+  users$: Observable<IUser[]> = this.projectService.getProjectUsers()
   .pipe(shareReplay(2));
   priorities: { id: 'LOW' | 'MEDIUM' | 'HIGH', name: string }[] = [
     {id: 'LOW', name: 'Low'},

@@ -1,4 +1,8 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -12,22 +16,17 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 @Component({
   selector: 'app-current-board',
   templateUrl: './current-board.component.html',
-  styleUrls: ['./current-board.component.scss']
+  styleUrls: ['./current-board.component.scss'],
 })
 export class CurrentBoardComponent implements OnInit {
   boardId!: number;
   board: IBoard = {} as IBoard;
   tasks: any = {
-    51:[
-      {title: 'Task 1', 
-      description: 'Description 1'},
-      {title: 'Task 2', 
-      description: 'Description 2'},
+    51: [
+      { title: 'Task 1', description: 'Description 1' },
+      { title: 'Task 2', description: 'Description 2' },
     ],
-    52:[
-      {title: 'Task 3',
-      description: 'Description 3'},
-    ]
+    52: [{ title: 'Task 3', description: 'Description 3' }],
   };
 
   constructor(
@@ -35,94 +34,94 @@ export class CurrentBoardComponent implements OnInit {
     private boardService: BoardService,
     private dialog: MatDialog,
     private taskService: AddTaskService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
-        this.boardId = +params['id']
-        this.getBoard()
+        this.boardId = +params['id'];
+        this.getBoard();
       }
-    })
+    });
   }
   getBoard() {
-    this.boardService.getTarBoard(this.boardId).subscribe(board => {
-      console.log(board)
-      this.board = board
-      this.getTasks()
-    })
+    this.boardService.getTarBoard(this.boardId).subscribe((board) => {
+      console.log(board);
+      this.board = board;
+      this.getTasks();
+    });
   }
-  addTask(column: Column) { 
+  addTask(column: Column) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '900px',
-      data: { 
+      data: {
         boardId: this.boardId,
-        column: column
-           }
+        column: column,
+      },
     });
-      dialogRef.afterClosed().subscribe((task: ITask) => {
+    dialogRef.afterClosed().subscribe((task: ITask) => {
       if (task) {
-        this.getTasks()
+        this.getTasks();
       }
-    })
+    });
   }
 
   private getTasks() {
-    this.taskService.getTasks({boardId: this.boardId}).subscribe(tasks => {
-      this.tasks = _.groupBy(tasks, 'boardColumnId')
-    })
+    this.taskService.getTasks({ boardId: this.boardId }).subscribe((tasks) => {
+      this.tasks = _.groupBy(tasks, 'boardColumnId');
+    });
   }
 
   drop(event: CdkDragDrop<any>, column: Column) {
-    console.log(event)
-    console.log(column)
+    console.log(event);
+    console.log(column);
 
-    
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
-      const tasks: ITask[] = event.container.data.map((task: ITask, index: number) => {
-        return {
-          ...task,
-          taskStatus: column.taskStatus,
-          boardColumnId: column.id,
+      const tasks: ITask[] = event.container.data.map(
+        (task: ITask, index: number) => {
+          return {
+            ...task,
+            taskStatus: column.taskStatus,
+            boardColumnId: column.id,
+          };
         }
-      })
-      this.tasks[column.id] = tasks
-      const currentTask = tasks[event.currentIndex]
-      console.log(currentTask)
-      this.taskService.updateTask(currentTask.id, currentTask).subscribe(task => {
-
-        console.log(task)
-        this.getTasks()
-      })
+      );
+      this.tasks[column.id] = tasks;
+      const currentTask = tasks[event.currentIndex];
+      console.log(currentTask);
+      this.taskService
+        .updateTask(currentTask.id, currentTask)
+        .subscribe((task) => {
+          console.log(task);
+          this.getTasks();
+        });
     }
-
-    
   }
-  viewTask(task: ITask, column: Column) { 
+  viewTask(task: ITask, column: Column) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '900px',
-      data: { 
+      data: {
         boardId: this.boardId,
         column: column,
-        taskId: task.id
-           }
+        taskId: task.id,
+      },
     });
     dialogRef.afterClosed().subscribe((task: ITask) => {
       if (task) {
-        this.getTasks()
+        this.getTasks();
       }
-    })
+    });
   }
-
-
-
 }

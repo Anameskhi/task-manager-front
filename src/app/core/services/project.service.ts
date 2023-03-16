@@ -23,8 +23,6 @@ export class ProjectService extends BaseService {
     return this.get<IProject[]>('project/my');
   }
 
-  
-
   getProjectId(id: number): Observable<IProject> {
     return this.get<IProject>(`project/${id}`);
   }
@@ -32,23 +30,15 @@ export class ProjectService extends BaseService {
   getAllProjects(): Observable<IProject[]> {
     return this.get<IProject[]>('project/All');
   }
-  getProjectUsers(): Observable<any> {
-    return this.get(`project/users`);
+
+  getProjectUsers(): Observable<IUser[]> {
+    return this.get<IUser[]>('project/users');
   }
 
-  getProjectUsers():Observable<IUser[]>{
-    return this.get<IUser[]>('project/users')
+  addUserProject(data: {
+    projectId: number;
+    userIds: number[];
+  }): Observable<any> {
+    return this.post(`project/users`, data);
   }
-
-  addUserProject(data:{
-    projectId: number,
-    userIds: number[]
-  }
-    ):Observable<any>{
-    return this.post(`project/users`,data)
-  }
-
-
-
-
 }

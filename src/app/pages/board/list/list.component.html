@@ -5,6 +5,7 @@
                 <p>{{task}}</p>
             </mat-card-content>
         </mat-card>
+        
     </div>
     <form #newItemForm="ngForm" (ngSubmit)="onSubmit(newItemForm)">
         <mat-form-field>
@@ -12,4 +13,5 @@
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary">Add Task</button>
     </form>
+   
 </div>

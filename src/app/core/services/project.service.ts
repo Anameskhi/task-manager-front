@@ -28,6 +28,9 @@ export class ProjectService extends BaseService {
   getAllProjects(): Observable<IProject[]> {
     return this.get<IProject[]>('project/All');
   }
+  getProjectUsers(): Observable<any> {
+    return this.get(`project/users`);
+  }
 
 
 

@@ -38,6 +38,11 @@ const routes: Routes = [
       {
         path: 'backlog',
         component: BacklogComponent
+      }, 
+      {
+        path: 'board',
+        canActivate:[AuthGuard],
+        loadChildren: () => import('./pages/board/board.module').then(m => m.BoardModule)
       }
     ]
   }
@@ -47,11 +52,7 @@ const routes: Routes = [
     canActivate:[LoginGuard],
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
-  {
-    path: 'board',
-    canActivate:[AuthGuard],
-    loadChildren: () => import('./pages/board/board.module').then(m => m.BoardModule)
-  },
+ 
   
   
 ];

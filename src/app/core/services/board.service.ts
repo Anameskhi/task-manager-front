@@ -18,4 +18,11 @@ export class BoardService extends BaseService {
   getTarBoard(id:number):Observable<IBoard>{
     return this.get<any>(`board/${id}`, )
   }
+  updateBoard(data: any): Observable<IBoard> {
+    return this.put<IBoard>(`board/${data.id}`, data);
+  }
+  
+  deleteBoard(id: number): Observable<any> {
+    return this.delete(`board/${id}`);
+  }
 }

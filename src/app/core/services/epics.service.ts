@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Iepic } from '../interfaces/epic';
 import { BaseService } from './base.service';
 
@@ -7,8 +8,8 @@ import { BaseService } from './base.service';
 })
 export class EpicsService extends BaseService {
 
-  getAllEpics(){
-    return this.get<Iepic[]>('epics')
+  getAllEpics(): Observable<Iepic[]> {
+    return this.get<Iepic[]>(`epics`);
   }
-
+  
 }

@@ -1,15 +1,35 @@
+import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Iepic } from '../interfaces/epic';
+
+import { IEpic } from '../interfaces/epic';
+
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EpicsService extends BaseService {
-
-  getAllEpics(): Observable<Iepic[]> {
-    return this.get<Iepic[]>(`epics`);
+  createEpic(epic: IEpic):Observable<IEpic> {
+    return this.post<IEpic>('epics', epic);
   }
-  
+
+
+  getAllEpics():Observable<IEpic[]> {
+    return this.get<IEpic[]>('epics');
+  }
+
+  getTarEpics(id:number){
+    return this.get<any>(`epics/${id}`)
+  }
+   
+  updateEpics(data: any): Observable<any> {
+    return this.put<IEpic>(`epics/${data.id}`, data);
+  }
+ 
+
+  deleteEpics(id:number){
+    return this.delete(`epics/${id}`)
+  }
+
 }

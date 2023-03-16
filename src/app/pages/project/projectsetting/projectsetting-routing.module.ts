@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IssueTypesComponent } from '../../home/issue-types/issue-types.component';
+import { IssueTypesComponent } from './components/issue-types/issue-types.component';
+import { BoardFormComponent } from './components/board-form/board-form.component';
 import { ProjectAboutComponent } from './components/project-about/project-about.component';
 
 import { ProjectBoardsComponent } from './components/project-boards/project-boards.component';
@@ -26,6 +27,30 @@ const routes: Routes = [
         component: ProjectAboutComponent,
       },
       {
+        path: 'BoardForm',
+        loadChildren: () =>
+          import('./components/board-form/board-form.module').then(
+            (m) => m.BoardFormModule
+          ),
+        component: BoardFormComponent,
+      },
+      {
+        path: 'BoardForm/:id',
+        loadChildren: () =>
+          import('./components/board-form/board-form.module').then(
+            (m) => m.BoardFormModule
+          ),
+        component: BoardFormComponent,
+      },
+      {
+        path: 'issueTypesForm/add',
+        component: IssueTypesComponent,
+      },
+      {
+        path: 'issueTypesForm/edit/:id',
+        component: IssueTypesComponent,
+      },
+      {
         path: 'boards',
         children: [
           {
@@ -42,6 +67,7 @@ const routes: Routes = [
           },
         ],
       },
+
       {
         path: 'issuetypes',
         children: [

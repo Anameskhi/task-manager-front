@@ -14,6 +14,8 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
   styleUrls: ['./project-boards.component.scss'],
 })
 export class ProjectBoardsComponent implements OnInit, OnDestroy {
+
+  loader=true
   constructor(
     private boardSrv: BoardService,
     private projectSrv: ProjectService,
@@ -43,6 +45,7 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
       .getboard()
       .pipe(takeUntil(this.sub$))
       .subscribe((boards) => {
+        this.loader=false
         console.log((this.dataSource.data = boards));
       });
   }
@@ -53,6 +56,17 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
   }
   onBoard() {
     console.log(this.fullProjectId);
-    this.router.navigate(['home/BoardForm/', this.fullProjectId]);
+    this.router.navigate(['/project/setting/BoardForm']);
   }
+  onDelete(elementId:any){
+    console.log(elementId);
+  return this.boardSrv.deleteBoard(elementId).subscribe(res=>{
+    if(res){
+      this.getBoards()
+    }
+    console.log(res);
+  })
+   
+  }
+ 
 }

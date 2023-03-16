@@ -17,6 +17,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatFormField, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
     ProjectEpicsComponent,
     ProjectEpicformComponent,
     ProjectUserformComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -39,6 +43,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
+   MatSelectModule,
     MatSelectModule,
   ],
 })

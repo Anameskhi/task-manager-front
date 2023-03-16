@@ -11,7 +11,7 @@
       <p>Trello</p>
     </div>
     <div class="right-links">
-      <button routerLink="home/ProjectForm">Add Project</button>
+      <button routerLink="projectform">Add Project</button>
       
         <!-- <div class="dropdown" >
           <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
@@ -22,10 +22,10 @@
   "<span class='badge badge-danger'>Pizzas</span>"><button class="dropdown-item" type="button">{{project.name}}</button></li>
           </ul>
         </div> -->
-       
+        
 
       
-        <select *ngIf="countOfMyProjects !== 0" [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)" class="selectpicker" >
+        <select  *ngIf="countOfMyProjects !== 0" [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)" class="selectpicker" >
           <option *ngFor="let project of projects$ | async" [value]="project.id"  data-content=
   "<span class='badge badge-danger'>Pizzas</span>">
               {{project.name}}

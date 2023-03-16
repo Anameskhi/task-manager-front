@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
-import { Iepic } from 'src/app/core/interfaces/epic';
+import { IEpic } from 'src/app/core/interfaces/epic';
 import { EpicsService } from 'src/app/core/services/epics.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { EpicsService } from 'src/app/core/services/epics.service';
   styleUrls: ['./project-epics.component.scss'],
 })
 export class ProjectEpicsComponent implements OnInit, OnDestroy {
-  dataSource = new MatTableDataSource<Iepic>();
+  dataSource = new MatTableDataSource<IEpic>();
+  loader = true;
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
   sub$ = new Subject();
 
@@ -24,6 +25,7 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy {
       .getAllEpics()
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
+        this.loader=false;
         this.dataSource.data = res;
       });
   }
@@ -31,5 +33,14 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();
+  }
+
+  onDelete(elementId: number) {
+    this.epicsSrc.deleteEpics(elementId).subscribe((res) => {
+      if(res){
+        this.getEpics()
+      }
+      console.log(res);
+    });
   }
 }

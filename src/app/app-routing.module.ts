@@ -2,12 +2,17 @@ import { LoginGuard } from './core/guards/login.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoardComponent } from './pages/board/board.component';
+
 import { MainLayoutComponent } from './features/main-layout.component';
+
 import { BacklogComponent } from './pages/backlog/backlog.component';
+
+import { ProjectFormComponent } from './pages/project/project-form/project-form.component';
+
 
 
 const routes: Routes = [
+ 
   {
 
     path: '',
@@ -18,7 +23,15 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     canActivate:[AuthGuard],
-    children: [
+    children: [ 
+      {
+    path: 'projectform',
+    loadChildren: () =>
+      import('./pages/project/project-form/project-form.module').then(
+        (m) => m.ProjectFormModule
+      ),
+    component: ProjectFormComponent,
+  },
       {
         path: 'home',
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)

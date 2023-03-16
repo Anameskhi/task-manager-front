@@ -8,8 +8,7 @@ import { HomeComponent } from './home.component';
 
 import { HomeStartComponent } from './home-start/home-start.component';
 
-
-import { IssueTypesComponent } from './issue-types/issue-types.component';
+import { IssueTypesComponent } from '../project/projectsetting/components/issue-types/issue-types.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,18 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-
-
 @NgModule({
-  declarations: [
-    HomeComponent,
-    HomeStartComponent,
-    
-
-   
-    IssueTypesComponent,
-   
-  ],
+  declarations: [HomeComponent, HomeStartComponent, IssueTypesComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -47,7 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDialogModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class HomeModule {}

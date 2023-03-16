@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClient } from '@angular/common/http';
 import { CookieStorageService } from './cookie.service';
-import { User } from './../interfaces/user';
+import { IUser } from './../interfaces/user';
 import { Observable, tap } from 'rxjs';
 import { Login, Register, AuthResponse } from './../interfaces/auth';
 import { BaseService } from './base.service';
@@ -70,11 +70,11 @@ export class AuthService extends BaseService {
   }
   
 
-  setUser(user: User){
+  setUser(user: IUser){
     localStorage.setItem('user', JSON.stringify(user))
   }
 
-  getUser(): User | null{
+  getUser(): IUser | null{
     const user = localStorage.getItem('user')
     return user? JSON.parse(user) : null
   }

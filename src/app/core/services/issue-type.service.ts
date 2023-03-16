@@ -17,12 +17,13 @@ export class IssueTypeService extends BaseService {
   }
 
   updateIssueType(issueType: any): Observable<IssueType> {
-    return this.put('issue-type', issueType);
+    return this.put(`issue-type/${issueType.id}`, issueType);
   }
 
   deleteIssueType(id: number): Observable<IssueType> {
     return this.delete(`issue-type/${id}`);
   }
+  
 
   getIssueType(id: number): Observable<IssueType> {
     return this.get(`issue-type/${id}`);

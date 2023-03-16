@@ -17,7 +17,7 @@ export class BoardService extends BaseService {
   getboard(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');
   }
-
+  
   getTarBoard(id: number): Observable<IBoard> {
     return this.get<any>(`board/${id}`);
   }

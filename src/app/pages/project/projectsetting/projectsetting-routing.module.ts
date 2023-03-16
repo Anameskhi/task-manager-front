@@ -8,7 +8,6 @@ import { ProjectBoardsComponent } from './components/project-boards/project-boar
 import { ProjectEpicformComponent } from './components/project-epicform/project-epicform.component';
 import { ProjectEpicsComponent } from './components/project-epics/project-epics.component';
 
-
 import { ProjectIssuetypesComponent } from './components/project-issuetypes/project-issuetypes.component';
 import { ProjectUserformComponent } from './components/project-userform/project-userform.component';
 import { ProjectsettingComponent } from './projectsetting.component';
@@ -44,7 +43,11 @@ const routes: Routes = [
         component: BoardFormComponent,
       },
       {
-        path: 'issueTypesForm/:id',
+        path: 'issueTypesForm/add',
+        component: IssueTypesComponent,
+      },
+      {
+        path: 'issueTypesForm/edit/:id',
         component: IssueTypesComponent,
       },
       {

@@ -22,47 +22,57 @@ export class ProjectEpicformComponent implements OnInit, OnDestroy {
   sub$ = new Subject();
 
   projectId?: number;
+  boardId?: any;
 
   constructor(
     private projectFacadeSrv: ProjectFacadeService,
     private epicSrv: EpicsService,
     private route: ActivatedRoute,
-    private router:Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((res) => {
+      this.boardId = res;
+      this.form.value.id = this.boardId.id;
+    });
     this.projectId = this.projectFacadeSrv.getProject().id;
-    console.log(this.projectId);
+    
+    if (this.boardId.id) {
+      this.fillEpicEdit();
+    }
+
   }
 
   onSubmit() {
-    let boardId: any;
-    this.route.params.subscribe((res) => {
-      boardId = res;
-      this.form.value.id = boardId.id;
-     
-    });
-    
-   
-    if (!boardId.id) {
-      
+    if (!this.boardId.id) {
       console.log('add');
       this.epicSrv
         .createEpic(this.form.value)
         .pipe(takeUntil(this.sub$))
         .subscribe((res) => {
           console.log(res);
-          this.router.navigate(['/project/setting/epics'])
-          
+          this.router.navigate(['/project/setting/epics']);
         });
     } else {
       console.log('update');
       this.epicSrv.updateEpics(this.form.value).subscribe((res) => {
         console.log(res);
+        this.router.navigate(['/project/setting/epics'])
       });
     }
   }
 
+
+
+  fillEpicEdit() {
+    this.epicSrv.getTarEpics(this.boardId.id).pipe(takeUntil(this.sub$)).subscribe((res) => {
+      this.form.patchValue(res);
+    });
+  } 
+  
+  
+  
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();

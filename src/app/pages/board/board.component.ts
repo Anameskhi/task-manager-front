@@ -35,8 +35,10 @@ export class BoardComponent implements OnInit {
     this.boards$.subscribe(res=>{
       console.log(res);
     })
-    const firstLetters = this.userServ.getUser()?.firstName.charAt(0)+'.'+this.userServ.getUser()?.lastName.charAt(0)
+    const firstLetters = this.userServ.getUser()?.firstName.charAt(0).toUpperCase()+'.'+this.userServ.getUser()?.lastName.charAt(0).toUpperCase()
     this.user= firstLetters
+   
+
 
     // this.boardService.getboard().subscribe(res=>{
     //   console.log(res);

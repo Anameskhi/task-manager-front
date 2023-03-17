@@ -22,11 +22,7 @@ export class CurrentBoardComponent implements OnInit {
   boardId!: number;
   board: IBoard = {} as IBoard;
   tasks: any = {
-    51: [
-      { title: 'Task 1', description: 'Description 1' },
-      { title: 'Task 2', description: 'Description 2' },
-    ],
-    52: [{ title: 'Task 3', description: 'Description 3' }],
+   
   };
 
   constructor(

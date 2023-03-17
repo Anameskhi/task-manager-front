@@ -62,6 +62,7 @@
     border: 1px solid black;
     cursor: pointer;
     outline: none;
+    overflow: hidden;
   }
   .color-box:focus {
     border: 2px solid red;

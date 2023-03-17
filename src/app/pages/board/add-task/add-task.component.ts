@@ -24,20 +24,20 @@ export class AddTaskComponent implements OnInit, OnDestroy {
   inputValue?: string;
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
-    name: new FormControl(null, Validators.required),
-    description: new FormControl(null, Validators.required),
-    issueTypeId: new FormControl(null, Validators.required),
-    epicId: new FormControl(null, Validators.required),
-    boardId: new FormControl(null, Validators.required),
-    priority: new FormControl(null, Validators.required),
-    isBacklog: new FormControl(true, Validators.required),
-    taskStatus: new FormControl(
-      this.data.boardColumn?.taskStatus || 'ToDo',
-      Validators.required
-    ),
-    assigneeId: new FormControl(null, Validators.required),
-    reporterId: new FormControl(null, Validators.required),
-    taskProperty: new FormArray([]),
+
+    name: new FormControl(null,Validators.required),
+    description: new FormControl(null,Validators.required),
+    issueTypeId: new FormControl(null,Validators.required),
+    epicId: new FormControl(null,Validators.required),
+    boardId: new FormControl(null,Validators.required),
+    priority: new FormControl(null,Validators.required),
+    isBacklog: new FormControl(true,Validators.required),
+    boardColumnId: new FormControl(null),
+    taskStatus: new FormControl(this.data.column?.taskStatus || 'ToDo', Validators.required),
+    assigneeId: new FormControl(null,Validators.required),
+    reporterId: new FormControl(null,Validators.required),
+    taskProperty: new FormArray([])
+
   });
 
   sub$ = new Subject();
@@ -60,21 +60,25 @@ export class AddTaskComponent implements OnInit, OnDestroy {
     private epicService: EpicsService,
     private boardService: BoardService,
     private projectService: ProjectService,
-    @Inject(MAT_DIALOG_DATA)
-    public data: { boardId: number; taskId: number; boardColumn: Column }
-  ) {}
+
+    @Inject(MAT_DIALOG_DATA) public data: {boardId: number,taskId:number, column: Column}
+  ){
+    
+  }
+  
 
   get taskProperty() {
     return this.form.get('taskProperty') as FormArray;
   }
 
   ngOnInit(): void {
-    if (this.data.taskId) {
-      this.getTask(this.data.taskId);
-    } else {
-      this.form
-        .get('issueTypeId')
-        ?.valueChanges.pipe(takeUntil(this.sub$))
+
+    if(this.data.taskId){
+      this.getTask(this.data.taskId)
+    }else {
+      this.form.get('issueTypeId')?.valueChanges
+        .pipe(takeUntil(this.sub$))
+
         .subscribe((issueTypeId: number) => {
           this.getIssueTypeProperties(issueTypeId);
         });
@@ -82,9 +86,12 @@ export class AddTaskComponent implements OnInit, OnDestroy {
     if (this.data.boardId) {
       this.form.patchValue({ boardId: this.data.boardId });
     }
-    if (this.data.boardColumn) {
-      this.form.patchValue({ taskStatus: this.data.boardColumn.name });
+
+    if(this.data.column){
+      this.form.patchValue({boardColumnId: this.data.column.id})
+
     }
+    
   }
 
   addTaskProperty() {

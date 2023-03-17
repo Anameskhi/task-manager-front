@@ -87,7 +87,7 @@
         
       }
       .add-column{
-            display: flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         height: 32px;
@@ -95,7 +95,12 @@
         border: 0.1px solid rgb(193, 188, 188);
         border-radius: 4px;
         cursor: pointer;
-    }
+        margin-top: 4px ;
+      }
+      .add-column:hover{
+        background-color: #f3f2f2;
+      }
+
     }
   }
  

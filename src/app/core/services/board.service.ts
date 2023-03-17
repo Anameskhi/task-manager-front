@@ -10,7 +10,6 @@ export class BoardService extends BaseService {
   addBoard(board: IBoard): Observable<IBoard> {
     return this.post<IBoard>('board', board);
   }
-
   
   getboard(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');

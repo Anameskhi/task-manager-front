@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,7 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MainLayoutModule,
     MatDialogModule,
-    
+   
   ],
 
   providers: [

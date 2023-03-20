@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/core/services';
 import { BoardService } from 'src/app/core/services/board.service';
+import { RoleService } from 'src/app/core/services/role.service';
 
 @Component({
   selector: 'app-home-start',
@@ -10,21 +11,25 @@ import { BoardService } from 'src/app/core/services/board.service';
 })
 export class HomeStartComponent implements OnInit {
   projects: any;
-  
-  projectNameArray?:string[]
+
+  projectNameArray?: string[];
   myProjects: any;
 
-  constructor(private projectService: ProjectService,private router:Router,private boardService:BoardService) {}
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private boardService: BoardService,
+    private roleService: RoleService
+  ) {}
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((res) => {
       this.projects = res;
       this.projects = this.projects.data;
-      this.boardService.getboard().subscribe(res=>{
+      this.boardService.getboard().subscribe((res) => {
         console.log(res);
-      })
-
-      
+      });
+      console.log('test');
     });
     this.projectService.getMyProjects().subscribe((res) => {
       console.log(res);
@@ -32,9 +37,9 @@ export class HomeStartComponent implements OnInit {
     });
   }
 
-  selectProject(project:any){
+  selectProject(project: any) {
     console.log(project);
 
-     this.router.navigate(['/board',project.id])
+    this.router.navigate(['/board', project.id]);
   }
 }

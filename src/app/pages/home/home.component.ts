@@ -1,6 +1,7 @@
 import { ProjectService } from './../../core/services/project.service';
 import { AuthService } from './../../core/services/auth.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { RoleService } from 'src/app/core/services/role.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.showCreateBoard);
-    this.getAllProject()
+    this.getAllProject();
+    console.log('test');
+    
   }
 
   getAllProject(){
@@ -26,4 +29,7 @@ export class HomeComponent implements OnInit {
       this.Projects = res;
   
   })}
+
+
+
 }

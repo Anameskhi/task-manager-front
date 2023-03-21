@@ -7,17 +7,17 @@
     
     .sml-cont{
       display: flex;
-    }
-
-    .columns {
-      display: flex;
       gap: 20px;
       height: calc(100vh - 219.5px);
       overflow-y: hidden;
       overflow-x: auto;
+    }
+
+    .columns {
+      
   
       .column {
-        overflow-y:auto;
+        overflow-y: auto;
         margin: 5px;
         flex: initial;
         width: 300px;

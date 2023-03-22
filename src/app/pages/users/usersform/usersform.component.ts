@@ -20,10 +20,16 @@ export class UsersformComponent {
     public dialogRef: MatDialogRef<any>,
     private userService: UsersService
   ) {}
+
   onSubmit() {
-    this.userService.createNewUsers(this.form.value).subscribe((res) => {
-      console.log(res);
+    this.form.markAllAsTouched()
+    if(this.form.invalid){
+      return
+    }
+
+    this.userService.createNewUsers(this.form.value)
+    .subscribe((res) => {
+      this.dialogRef.close(res)
     });
-    console.log(this.form.value);
   }
 }

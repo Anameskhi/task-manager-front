@@ -25,6 +25,8 @@ export class CurrentBoardComponent implements OnInit {
    
   };
 
+  lists: any = []
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private boardService: BoardService,
@@ -42,7 +44,7 @@ export class CurrentBoardComponent implements OnInit {
   }
   getBoard() {
     this.boardService.getTarBoard(this.boardId).subscribe((board) => {
-      console.log(board);
+      this.lists = board.columns;
       this.board = board;
       this.getTasks();
     });
@@ -120,4 +122,12 @@ export class CurrentBoardComponent implements OnInit {
       }
     });
   }
+
+
+
+  onColumnDrop(event: CdkDragDrop<any>) {
+    moveItemInArray(this.lists, event.previousIndex, event.currentIndex);
+  }
+
+
 }

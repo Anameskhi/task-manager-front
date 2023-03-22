@@ -7,7 +7,6 @@ import { ProjectService } from 'src/app/core/services';
 import { BoardFormService } from 'src/app/core/services/board-form.service';
 import { ProjectFacadeService } from 'src/app/facades/project.service';
 
-
 @Component({
   selector: 'app-board-form',
   templateUrl: './project-form.component.html',
@@ -20,9 +19,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   color = '';
   background =
     'https://plus.unsplash.com/premium_photo-1674752365557-166d7edc8081?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80';
-  
-  sub$ = new Subject()
-    constructor(
+
+  sub$ = new Subject();
+  constructor(
     private boardFormSrv: BoardFormService,
 
     private router: Router,
@@ -40,10 +39,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
       color: new FormControl('', Validators.required),
     });
   }
-ngOnDestroy(): void {
-  this.sub$.next(null),
-  this.sub$.complete()
-}
+  ngOnDestroy(): void {
+    this.sub$.next(null), this.sub$.complete();
+  }
   onColor(colors: string) {
     this.color = colors;
     this.background = colors;
@@ -53,15 +51,24 @@ ngOnDestroy(): void {
       .createProject(this.createProject.value)
       .pipe(
         takeUntil(this.sub$),
-        tap( (res) => this.projectFacadeService.setProject(res.id)),
-        switchMap( () => this.projectFacadeService.getMyProjects()) 
-       
+        tap((res) => this.projectFacadeService.setProject(res.id)),
+        switchMap(() => this.projectFacadeService.getMyProjects())
       )
       .subscribe((res) => {
-        
         this.router.navigate(['project/setting']);
       });
 
     console.log(this.createProject.value);
+  }
+
+  getStyle() {
+    if (this.color.startsWith('http')) {
+      return { 'background-image': `url('${this.color}')` };
+    } else if (this.color.startsWith('rgb') || this.color.startsWith('#')) {
+      return { 'background-color': this.color };
+    } else {
+      console.log(this.color);
+      return {};
+    }
   }
 }

@@ -34,4 +34,5 @@ export class UsersService extends BaseService {
   deleteUser(id: number):Observable<IUser>{
     return this.delete<IUser>(`users/${id}`)
   }
+ 
 }

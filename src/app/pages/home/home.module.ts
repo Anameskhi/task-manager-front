@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 import { HomeStartComponent } from './home-start/home-start.component';
 
 import { IssueTypesComponent } from '../project/projectsetting/components/issue-types/issue-types.component';
@@ -18,9 +18,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HomeBoardsComponent } from './home-boards/home-boards.component';
+import { HomeTemplateComponent } from './home-template/home-template.component';
 
 @NgModule({
-  declarations: [HomeComponent, HomeStartComponent, IssueTypesComponent],
+  declarations: [HomeComponent, HomeStartComponent, IssueTypesComponent, HomeBoardsComponent, HomeTemplateComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -37,6 +39,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCheckboxModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatExpansionModule
   ],
 })
 export class HomeModule {}

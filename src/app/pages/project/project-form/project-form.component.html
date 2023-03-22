@@ -1,10 +1,8 @@
-
-  
 <div class="form-cont">
   <div
     class="project-blueprint"
-    [ngStyle]="{ background: color }"
-    [ngStyle]="{ 'background-image': 'url(' + background + ')' }"
+    [ngStyle]="getStyle()"
+    
   >
     <div class="background-img"></div>
     <div class="icon-div">
@@ -26,13 +24,7 @@
   <form [formGroup]="createProject" (ngSubmit)="onSubmit()" class="form">
     <div>
       <label for="name">Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        formControlName="name"
-        
-      />
+      <input type="text" id="name" name="name" formControlName="name" />
     </div>
     <div>
       <label for="abbreviation">Abbreviation</label>
@@ -41,7 +33,6 @@
         id="abbreviation"
         name="abbreviation"
         formControlName="abbreviation"
-       
       />
     </div>
     <div>
@@ -54,7 +45,6 @@
             (click)="onColor(colors); background = ' '"
             [ngStyle]="{ 'background-color': colors }"
           ></button>
-          
         </div>
 
         <input
@@ -98,16 +88,8 @@
         required
       ></textarea>
     </div>
-    <div style="text-align: center" >
-      <button 
-     
-        type="submit"
-       
-        
-      >
-        Create Project
-      </button>
+    <div style="text-align: center">
+      <button type="submit">Create Project</button>
     </div>
   </form>
-  
 </div>

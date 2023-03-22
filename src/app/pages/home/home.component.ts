@@ -9,7 +9,7 @@ import { RoleService } from 'src/app/core/services/role.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  
+  panelOpenState:boolean = true;
   showCreateBoard: boolean = true;
   Projects: any;
   

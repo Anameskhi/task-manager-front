@@ -35,10 +35,16 @@ export class ProjectService extends BaseService {
     return this.get<IUser[]>('project/users');
   }
 
+  getAllProjectsWithBoards(){
+    return this.get<any>('project/withBoards')
+  }
+
   addUserProject(data: {
     projectId: number;
     userIds: number[];
   }): Observable<any> {
     return this.post(`project/users`, data);
   }
+
+
 }

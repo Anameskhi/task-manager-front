@@ -3,7 +3,7 @@
 
     <div>
       <button mat-button [matMenuTriggerFor]="menu" #menuTrigger>Select Board<mat-icon>keyboard_arrow_down</mat-icon></button>
-          <mat-menu #menu="matMenu">
+          <mat-menu #menu="matMenu" class="board-list">
             <ul>
               <li *ngFor="let board of boards$ |async">
                 <a (click)="getCurrentBoard(board.id)" [routerLink]="['/board', board.id]">{{board.name}}</a>

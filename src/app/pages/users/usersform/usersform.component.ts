@@ -20,6 +20,7 @@ export class UsersformComponent implements OnInit{
     mobileNumber: new FormControl(null),
     email: new FormControl(null, [Validators.required, Validators.email]),
     identityNumber: new FormControl(null),
+    isActive: new FormControl(true)
 
   });
   constructor(

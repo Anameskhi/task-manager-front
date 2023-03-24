@@ -16,7 +16,7 @@ export class UsersListComponent implements OnInit {
 
   loader:boolean=true
   allUsers$:Observable<IUser[]> = this.userService.getAllUsers()
-  displayedColumns: string[] = ['Id', 'FullName', 'CreatedAt', 'Action'];
+  displayedColumns: string[] = ['Id', 'FullName', 'CreatedAt', 'Role','Action'];
   dataSource = new MatTableDataSource<IUser>();
 
   users: any;

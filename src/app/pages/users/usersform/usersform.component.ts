@@ -1,8 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { of, switchMap } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.service';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { IUser } from 'src/app/core/interfaces';

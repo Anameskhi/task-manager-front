@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add Users</h1>
+<h1 mat-dialog-title>{{userId? ('Edit User'): ('Add User')}}</h1>
 <div class =' mat-dialog-content' mat-dialog-content [formGroup]="form">
   <form [formGroup]="form">
   

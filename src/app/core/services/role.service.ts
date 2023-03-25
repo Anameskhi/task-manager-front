@@ -14,7 +14,7 @@ export class RoleService extends BaseService {
   }
 
 
-  getRole(id: number): Observable<IRole>{
+  getRole(id: string): Observable<IRole>{
     return this.get(`role/${id}`)
   }
 
@@ -36,6 +36,17 @@ export class RoleService extends BaseService {
 
   deleteRole(id: string):Observable<IRole>{
     return this.delete<IRole>(`role/${id}`)
+  }
+
+  getPermissions():Observable<any[]>{
+    return this.get(`role/permission`)
+  }
+
+  setPermissions(params:{
+    roleId: string, 
+    permissions: number[]
+  }):Observable<any>{
+    return this.post(`role/permissions`, params)
   }
 
  

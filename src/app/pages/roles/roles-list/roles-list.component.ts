@@ -6,6 +6,7 @@ import { IRole } from 'src/app/core/interfaces/role';
 import { RoleService } from 'src/app/core/services';
 import { RolesformComponent } from '../rolesform/rolesform.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-roles-list',
@@ -24,7 +25,8 @@ export class RolesListComponent implements OnInit {
 
   constructor(
     private roleService: RoleService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   getAllRoles() {
@@ -73,7 +75,5 @@ export class RolesListComponent implements OnInit {
     this.getAllRoles()
   }
 
-  setPermissions(id: number) {
-
-  }
+  
 }

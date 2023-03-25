@@ -28,7 +28,7 @@ export class UsersformComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: any,
     private toast: NgToastService
   ) {}
- userId?: number
+ userId = this.data.userId
 
  ngOnInit(): void {
 

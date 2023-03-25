@@ -13,6 +13,7 @@ export class RoleService extends BaseService {
     return this.post<IRole>('role',role)
   }
 
+
   getRole(id: number): Observable<IRole>{
     return this.get(`role/${id}`)
   }

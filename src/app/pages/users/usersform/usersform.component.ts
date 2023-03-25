@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UsersService } from 'src/app/core/services/users.service';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { IUser } from 'src/app/core/interfaces';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-usersform',
@@ -24,7 +25,8 @@ export class UsersformComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<any>,
     private userService: UsersService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: NgToastService
   ) {}
  userId?: number
 
@@ -56,6 +58,7 @@ export class UsersformComponent implements OnInit{
   } else {
     this.userService.createNewUsers(this.form.value)
     .subscribe((res) => {
+
       this.dialogRef.close(res)
     });
   }

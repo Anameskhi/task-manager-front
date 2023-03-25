@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { IUser } from 'src/app/core/interfaces';
+import { RoleService } from 'src/app/core/services';
 import { UsersService } from 'src/app/core/services/users.service';
 import { UsersRolesComponent } from '../users-roles/users-roles.component';
 import { UsersformComponent } from '../usersform/usersform.component';
@@ -20,7 +21,7 @@ export class UsersListComponent implements OnInit {
   dataSource = new MatTableDataSource<IUser>();
 
   users: any;
-  constructor(private userService: UsersService, public dialog: MatDialog) {}
+  constructor(private userService: UsersService, public dialog: MatDialog,private roleService: RoleService) {}
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -33,8 +34,12 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(UsersRolesComponent);
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(UsersRolesComponent, {
+      data: {
+        userId: id,
+      }});
+
   }
 
   addEditUser(id?: number) {

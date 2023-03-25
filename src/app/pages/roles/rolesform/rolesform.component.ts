@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./rolesform.component.scss']
 })
 export class RolesformComponent implements OnInit{
+
+  id = this.data.roleId
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private roleService: RoleService,

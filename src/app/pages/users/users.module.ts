@@ -18,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     UsersListComponent,
     UsersformComponent,
-    UsersRolesComponent
+    UsersRolesComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +29,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+   
   ]
 })
 export class UsersModule { }

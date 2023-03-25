@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ProjectService } from 'src/app/core/services';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { IUser } from 'src/app/core/interfaces';
+import { RoleService } from 'src/app/core/services';
 import { UsersService } from 'src/app/core/services/users.service';
 import { UsersRolesComponent } from '../users-roles/users-roles.component';
 import { UsersformComponent } from '../usersform/usersform.component';
@@ -13,11 +16,12 @@ import { UsersformComponent } from '../usersform/usersform.component';
 export class UsersListComponent implements OnInit {
 
   loader:boolean=true
-
+  allUsers$:Observable<IUser[]> = this.userService.getAllUsers()
   displayedColumns: string[] = ['Id', 'FullName', 'CreatedAt', 'Action'];
-  dataSource: any;
+  dataSource = new MatTableDataSource<IUser>();
+
   users: any;
-  constructor(private userService: UsersService, public dialog: MatDialog) {}
+  constructor(private userService: UsersService, public dialog: MatDialog,private roleService: RoleService) {}
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -30,16 +34,22 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(UsersRolesComponent);
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(UsersRolesComponent, {
+      data: {
+        userId: id,
+      }});
+
   }
 
-  openAddUsers(id?: number) {
+  addEditUser(id?: number) {
     const dialogRef = this.dialog.open(UsersformComponent, {
       data: {
         userId: id,
-      },
+      }
     });
+    
+
     dialogRef.afterClosed().subscribe((res) => {
       this.getAllUsers();
     });
@@ -49,7 +59,7 @@ export class UsersListComponent implements OnInit {
     this.userService.getAllUsers().subscribe((res) => {
       console.log(res);
       this.users = res;
-      this.dataSource = res;
+      this.dataSource.data = res
       this.loader=false
       
     });

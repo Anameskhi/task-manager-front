@@ -2,7 +2,7 @@
   <div>
     <h2>All Users</h2>
 
-    <button mat-raised-button color="primary" (click)="openAddUsers()">
+    <button mat-raised-button color="primary" (click)="addEditUser()">
       Add User
     </button>
   </div>
@@ -33,11 +33,11 @@
             mat-raised-button
             color="primary"
             mat-button
-            (click)="openDialog()"
+            (click)="openDialog(element.id)"
           >
             Set Role
           </button>
-          <button mat-raised-button color="primary">Edit</button>
+          <button mat-raised-button color="primary" (click)="addEditUser(element.id)">Edit</button>
           <button mat-raised-button color="warn" (click)="onDelete(element.id)">
             Delete
           </button>

@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { IBoard, IUser } from 'src/app/core/interfaces';
+import { IUser } from 'src/app/core/interfaces';
 import { ProjectService } from 'src/app/core/services';
 import { UsersService } from 'src/app/core/services/users.service';
 import { ProjectFacadeService } from 'src/app/facades/project.service';
+import { UsersformComponent } from 'src/app/pages/users/usersform/usersform.component'
 
 @Component({
   selector: 'app-project-userform',
@@ -77,9 +78,8 @@ export class ProjectUserformComponent implements OnInit,OnDestroy{
  
 
   }
-  chooseUser(){
-    const userIds = [...this.projectUserIds,this.userForm.value.userId]
 
+  createUsers(userIds: number[]){
     this.projectService.addUserProject({
       projectId: this.projectId,
       userIds
@@ -89,13 +89,29 @@ export class ProjectUserformComponent implements OnInit,OnDestroy{
       this.getProjectUsers(),
       this.chooseUserToggle()
     })
+  }
+
+  chooseUser(){
+    const userIds = [...this.projectUserIds,this.userForm.value.userId]
+    this.createUsers(userIds)
 
   }
 
-
   chooseUserToggle(){
     this.chooseUserActive = !this.chooseUserActive
+  }
 
+  addProjectUser(){
+   const dialog =  this.dialog.open(UsersformComponent)
+   
+   dialog.afterClosed()
+   .pipe()
+   .subscribe((result: IUser) =>{
+    if(result){
+      const userIds = [...this.projectUserIds, result.id]
+      this.createUsers(userIds)
+    }
+   })
   }
 
   

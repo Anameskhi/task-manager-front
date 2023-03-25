@@ -15,6 +15,10 @@ export class UsersService extends BaseService {
     return this.post<IUser>('users',user)
   }
 
+  createUsersRoles(payload: { userId: number, roleIds: string[] }): Observable<IUser> {
+    return this.post('users/roles', payload);
+  }
+
   getUsers():Observable<PaginationResponse<IUser>>{
     return this.get<PaginationResponse<IUser>>('users')
 

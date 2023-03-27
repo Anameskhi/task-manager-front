@@ -21,8 +21,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HomeBoardsComponent } from './home-boards/home-boards.component';
 import { HomeTemplateComponent } from './home-template/home-template.component';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 @NgModule({
-  declarations: [HomeComponent, HomeStartComponent, IssueTypesComponent, HomeBoardsComponent, HomeTemplateComponent],
+  declarations: [HomeComponent, HomeStartComponent, IssueTypesComponent, HomeBoardsComponent, HomeTemplateComponent,],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -39,7 +41,8 @@ import { HomeTemplateComponent } from './home-template/home-template.component';
     MatCheckboxModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SharedModule
   ],
 })
 export class HomeModule {}

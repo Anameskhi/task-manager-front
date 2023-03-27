@@ -17,12 +17,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectInterceptor } from './core/interceptors/project.interceptor';
 import { MainLayoutModule } from './features/main-layout.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from './shared/shared.module';
+
 
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,9 +34,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MainLayoutModule,
     MatDialogModule,
-   
+   SharedModule
   ],
-
+  
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

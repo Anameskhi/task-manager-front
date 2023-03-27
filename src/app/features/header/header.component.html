@@ -1,38 +1,49 @@
 <mat-toolbar class="toolbar">
-    <div class="left-links">
-      <div><a routerLink="/home"><img src="../../../assets/images/home.png" alt="home"></a></div>
-      <div><a routerLink="/board">Dashboard</a></div>
-      <div><a routerLink="/backlog">Backlog</a></div>
-      <div><a routerLink="/users">Users</a></div>
-      <div><a routerLink="/roles">Roles</a></div>
+  <div class="left-links">
+    <div>
+      <a routerLink="/home"
+        ><img src="../../../assets/images/home.png" alt="home"
+      /></a>
     </div>
-    <div class="trello">
-      <img src="assets/images/logo.png" alt="logo">
-      <p>Trello</p>
-    </div>
-    <div class="right-links">
-      <button routerLink="projectform">Add Project</button>
-      
-        <!-- <div class="dropdown" >
-          <button class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
-           Choose a Project
-          </button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let project of projects$ | async" [value]="project.id" data-content=
-  "<span class='badge badge-danger'>Pizzas</span>"><button class="dropdown-item" type="button">{{project.name}}</button></li>
-          </ul>
-        </div> -->
-        
+    <div><a routerLink="/board">Dashboard</a></div>
+    <div><a routerLink="/backlog">Backlog</a></div>
+    <div appRoles><a routerLink="/users">Users</a></div>
+    <div appRoles><a routerLink="/roles">Roles</a></div>
+  </div>
+  <div class="trello">
+    <img src="assets/images/logo.png" alt="logo" />
+    <p>Trello</p>
+  </div>
+  <div class="right-links">
+    <button routerLink="projectform">Add Project</button>
 
-      
-        <select  *ngIf="countOfMyProjects !== 0" [ngModel]="currentProject?.id" (ngModelChange)="selectProject($event)" class="selectpicker" >
-          <option *ngFor="let project of projects$ | async" [value]="project.id"  data-content=
-  "<span class='badge badge-danger'>Pizzas</span>">
-              {{project.name}}
-          </option>
-      </select>
-      <div><a routerLink="project/setting/about"><img src="../../../assets/images/setting.png" alt="setting"></a></div>
-      <div><mat-icon class="logout" (click)="logout()" routerLink="/auth/login" routerLinkActive="router-link-active">exit_to_app</mat-icon></div>
+    <select
+      *ngIf="countOfMyProjects !== 0"
+      [ngModel]="currentProject?.id"
+      (ngModelChange)="selectProject($event)"
+      class="selectpicker"
+    >
+      <option
+        *ngFor="let project of projects$ | async"
+        [value]="project.id"
+        data-content="<span class='badge badge-danger'>Pizzas</span>"
+      >
+        {{ project.name }}
+      </option>
+    </select>
+    <div>
+      <a routerLink="project/setting/about"
+        ><img src="../../../assets/images/setting.png" alt="setting"
+      /></a>
     </div>
-
+    <div>
+      <mat-icon
+        class="logout"
+        (click)="logout()"
+        routerLink="/auth/login"
+        routerLinkActive="router-link-active"
+        >exit_to_app</mat-icon
+      >
+    </div>
+  </div>
 </mat-toolbar>

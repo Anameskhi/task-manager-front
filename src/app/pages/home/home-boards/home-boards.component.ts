@@ -19,13 +19,13 @@ export class HomeBoardsComponent implements OnInit, OnDestroy {
   constructor(
     private boardService: BoardService,
     private projectService: ProjectService,
-    private projectFacadeService:ProjectFacadeService,
-    private router:Router
+    private projectFacadeService: ProjectFacadeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getAllProjectsBoards();
     this.getboards();
+    this.getAllProjectsBoards();
   }
 
   getboards() {
@@ -64,10 +64,10 @@ export class HomeBoardsComponent implements OnInit, OnDestroy {
   selectProject(project: any) {
     console.log(project.boards);
     this.projectFacadeService.setProject(project.id);
-    if(project.boards.length>0){
-    this.router.navigate(['/board']);
-  }else{
-    this.router.navigate(['/project/setting/boards']);
-  }
+    if (project.boards.length > 0) {
+      this.router.navigate(['/board']);
+    } else {
+      this.router.navigate(['/project/setting/boards']);
+    }
   }
 }

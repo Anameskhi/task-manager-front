@@ -19,12 +19,8 @@ import { MainLayoutModule } from './features/main-layout.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from './shared/shared.module';
 
-
-
-
-
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,9 +30,9 @@ import { SharedModule } from './shared/shared.module';
     MatSnackBarModule,
     MainLayoutModule,
     MatDialogModule,
-   SharedModule
+    SharedModule,
   ],
-  
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

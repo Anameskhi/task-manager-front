@@ -25,7 +25,7 @@ const routes: Routes = [
         component: HomeTemplateComponent,
       },
       {
-        path: 'main',
+        path: '',
         component: HomeStartComponent,
       },
     ],

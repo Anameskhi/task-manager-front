@@ -10,73 +10,73 @@ import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService extends BaseService {
+  errorMessage?: string;
 
-  errorMessage?: string
-
-   constructor(
+  constructor(
     private cookieStorageService: CookieStorageService,
     private toast: NgToastService,
     private router: Router,
-     http: HttpClient
-   ){
-     super(http)
-   }
-
-  login(payload: Login ):Observable<AuthResponse>{
-    return this.post<AuthResponse>('auth/login',payload)
-    .pipe(
-      tap((response: AuthResponse)=>{
-       const cookieExpire = new Date(Date.now() + 24 * 60 * 60 * 1000)
-
-         this.setToken('token',response.token.accessToken,cookieExpire)
-         this.setRefreshToken('refreshToken',response.token.refreshToken)
-         this.setUser(response.user)
-      })
-    )
+    http: HttpClient
+  ) {
+    super(http);
   }
-  
 
-  register(payload: Register ):Observable<AuthResponse>{
-    return this.post<AuthResponse>('auth/signup',payload)
+  login(payload: Login): Observable<AuthResponse> {
+    return this.post<AuthResponse>('auth/login', payload).pipe(
+      tap((response: AuthResponse) => {
+        const cookieExpire = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+        this.setToken('token', response.token.accessToken, cookieExpire);
+        this.setRefreshToken('refreshToken', response.token.refreshToken);
+        this.setUser(response.user);
+      })
+    );
+  }
+
+  register(payload: Register): Observable<AuthResponse> {
+    return this.post<AuthResponse>('auth/signup', payload);
   }
 
   refreshToken() {
-    return this.post<any>('auth/token', { 'refreshToken': this.getRefreshTok() })
-    .pipe(tap((tokens: Token)=>{
-      this.setToken('token',tokens.accessToken,new Date(Date.now() + 24 * 60 * 60 * 1000))
-    }))
+    return this.post<any>('auth/token', {
+      refreshToken: this.getRefreshTok(),
+    }).pipe(
+      tap((tokens: Token) => {
+        this.setToken(
+          'token',
+          tokens.accessToken,
+          new Date(Date.now() + 24 * 60 * 60 * 1000)
+        );
+      })
+    );
   }
 
-  
+  setToken(name: string, token: string, time: any) {
+    this.cookieStorageService.setCookie(name, token, time);
+  }
 
-
-  setToken(name: string,token:string,time:any){
-    this.cookieStorageService.setCookie(name,token,time);
-   }
-
-  setRefreshToken(name:string,token: string){
-    this.cookieStorageService.setCookie(name,token)
-   }
+  setRefreshToken(name: string, token: string) {
+    this.cookieStorageService.setCookie(name, token);
+  }
 
   getToken() {
-    return this.cookieStorageService.getCookie('token')
+    return this.cookieStorageService.getCookie('token');
   }
 
   getRefreshTok(): string {
     return this.cookieStorageService.getCookie('refreshToken');
   }
-  
 
-  setUser(user: IUser){
-    localStorage.setItem('user', JSON.stringify(user))
+  setUser(user: IUser) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser(): IUser | null{
-    const user = localStorage.getItem('user')
-    return user? JSON.parse(user) : null
+  getUser(): IUser | null {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   }
 
   signOut() {
@@ -84,15 +84,10 @@ export class AuthService extends BaseService {
     this.cookieStorageService.deleteCookie('refreshToken');
     this.cookieStorageService.deleteAllCookies();
     localStorage.clear();
-
   }
 
-  getError(error: string){
-    this.errorMessage = error
-    console.log(this.errorMessage)
+  getError(error: string) {
+    this.errorMessage = error;
+    //console.log()(this.errorMessage)
   }
-
-
-  
-
 }

@@ -43,7 +43,7 @@ export class BoardFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((res) => {
       this.boardId = res;
-      console.log(this.boardId);
+      //console.log()(this.boardId);
     });
 
     this.boardForm = this.fb.group({
@@ -113,16 +113,16 @@ export class BoardFormComponent implements OnInit, OnDestroy {
         .subscribe((res) => {
           this.fullProjectId = res.id;
           this.router.navigate(['/project/setting/boards']);
-          console.log(this.fullProjectId);
+          //console.log()(this.fullProjectId);
         });
     } else {
       this.boardForm.value.id = this.boardId.id;
-      console.log('update');
+      //console.log()('update');
 
       this.Board.updateBoard(this.boardForm.value)
         .pipe(takeUntil(this.sub$))
         .subscribe((res) => {
-          console.log(res);
+          //console.log()(res);
           this.router.navigate(['/project/setting/boards']);
         });
     }

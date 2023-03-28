@@ -42,7 +42,7 @@ export class HomeBoardsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
         this.fullProjects = res;
-        console.log(res);
+        //console.log()(res);
       });
   }
 
@@ -62,7 +62,7 @@ export class HomeBoardsComponent implements OnInit, OnDestroy {
   }
 
   selectProject(project: any) {
-    console.log(project.boards);
+    //console.log()(project.boards);
     this.projectFacadeService.setProject(project.id);
     if (project.boards.length > 0) {
       this.router.navigate(['/board']);

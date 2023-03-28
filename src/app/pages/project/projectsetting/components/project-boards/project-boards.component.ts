@@ -14,8 +14,7 @@ import { ProjectFacadeService } from 'src/app/facades/project.service';
   styleUrls: ['./project-boards.component.scss'],
 })
 export class ProjectBoardsComponent implements OnInit, OnDestroy {
-
-  loader=true
+  loader = true;
   constructor(
     private boardSrv: BoardService,
     private projectSrv: ProjectService,
@@ -31,10 +30,10 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getBoards();
     this.project = this.projectFacadeSrv.getProject();
-    console.log(this.project.id);
+    //console.log()(this.project.id);
     if (this.project.id > 0) {
       this.fullProjectId = this.project.id;
-      console.log(this.fullProjectId);
+      //console.log()(this.fullProjectId);
     }
   }
 
@@ -45,8 +44,8 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
       .getboard()
       .pipe(takeUntil(this.sub$))
       .subscribe((boards) => {
-        this.loader=false
-        console.log((this.dataSource.data = boards));
+        this.loader = false;
+        //console.log()((this.dataSource.data = boards));
       });
   }
 
@@ -55,18 +54,16 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
     this.sub$.complete();
   }
   onBoard() {
-    console.log(this.fullProjectId);
+    //console.log()(this.fullProjectId);
     this.router.navigate(['/project/setting/BoardForm']);
   }
-  onDelete(elementId:any){
-    console.log(elementId);
-  return this.boardSrv.deleteBoard(elementId).subscribe(res=>{
-    if(res){
-      this.getBoards()
-    }
-    console.log(res);
-  })
-   
+  onDelete(elementId: any) {
+    //console.log()(elementId);
+    return this.boardSrv.deleteBoard(elementId).subscribe((res) => {
+      if (res) {
+        this.getBoards();
+      }
+      //console.log()(res);
+    });
   }
- 
 }

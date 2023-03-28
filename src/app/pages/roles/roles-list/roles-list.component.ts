@@ -11,69 +11,65 @@ import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-roles-list',
   templateUrl: './roles-list.component.html',
-  styleUrls: ['./roles-list.component.scss']
+  styleUrls: ['./roles-list.component.scss'],
 })
 export class RolesListComponent implements OnInit {
-  loader = true
+  loader = true;
   pageIndex = 1;
   total = 0;
   pageSize = 10;
   displayedColumns: string[] = ['Id', 'FullName', 'CreatedAt', 'Action'];
-  dataSource = new MatTableDataSource<IRole>()
+  dataSource = new MatTableDataSource<IRole>();
 
-  sub$ = new Subject()
+  sub$ = new Subject();
 
   constructor(
     private roleService: RoleService,
     public dialog: MatDialog,
     private router: Router
-  ) { }
+  ) {}
 
   getAllRoles() {
-    this.roleService.getRoles({
-      page: this.pageIndex,
-      limit: this.pageSize
-    }).subscribe(roles => {
-      console.log(roles)
-      this.dataSource.data = roles.data
-      console.log(roles.data)
-      this.total = roles.totalCount
-      this.loader = false
-    })
+    this.roleService
+      .getRoles({
+        page: this.pageIndex,
+        limit: this.pageSize,
+      })
+      .subscribe((roles) => {
+        //console.log()(roles)
+        this.dataSource.data = roles.data;
+        //console.log()(roles.data)
+        this.total = roles.totalCount;
+        this.loader = false;
+      });
   }
 
   ngOnInit(): void {
-    this.getAllRoles()
+    this.getAllRoles();
   }
-
 
   addEditRole(id?: number) {
     const dialogRef = this.dialog.open(RolesformComponent, {
       data: {
-        roleId: id
-      }
+        roleId: id,
+      },
     });
 
     dialogRef.afterClosed().subscribe((res) => {
       this.getAllRoles();
     });
-
-
   }
 
   deleteRole(id: string) {
-    this.roleService.deleteRole(id).subscribe(res =>{
-      this.getAllRoles()
-    })
-    
+    this.roleService.deleteRole(id).subscribe((res) => {
+      this.getAllRoles();
+    });
   }
 
   pageEvent($event: PageEvent) {
-    console.log($event)
-    this.pageIndex = $event.pageIndex + 1
-    this.pageSize = $event.pageSize
-    this.getAllRoles()
+    //console.log()($event)
+    this.pageIndex = $event.pageIndex + 1;
+    this.pageSize = $event.pageSize;
+    this.getAllRoles();
   }
-
-  
 }

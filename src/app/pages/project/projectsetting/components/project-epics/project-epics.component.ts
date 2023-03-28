@@ -25,7 +25,7 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy {
       .getAllEpics()
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-        this.loader=false;
+        this.loader = false;
         this.dataSource.data = res;
       });
   }
@@ -37,10 +37,10 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy {
 
   onDelete(elementId: number) {
     this.epicsSrc.deleteEpics(elementId).subscribe((res) => {
-      if(res){
-        this.getEpics()
+      if (res) {
+        this.getEpics();
       }
-      console.log(res);
+      //console.log()(res);
     });
   }
 }

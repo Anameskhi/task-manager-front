@@ -38,13 +38,13 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.boards$.subscribe(res=>{
-      console.log(res);
+      
     })
     const firstLetters = this.userServ.getUser()?.firstName.charAt(0).toUpperCase()+'.'+this.userServ.getUser()?.lastName.charAt(0).toUpperCase()
     this.user= firstLetters
   }
   get project(): IProject {
-    console.log('test')
+   
     return this.projectFacade.getProject();
   }
 

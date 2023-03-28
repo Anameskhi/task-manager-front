@@ -22,10 +22,9 @@ export class ProjectAboutComponent implements OnInit, OnDestroy {
   ) {}
 
   get project(): IProject {
-    console.log('test')
     return this.projectFacadeSrv.getProject();
   }
- 
+
   ngOnInit(): void {
     this.mainProject = this.projectFacadeSrv.getProject();
     this.getProjectUsers();
@@ -46,7 +45,7 @@ export class ProjectAboutComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
         this.projectUsers = res;
-        console.log(res);
+        //console.log()(res);
       });
   }
 

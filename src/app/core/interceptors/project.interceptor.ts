@@ -25,7 +25,7 @@ export class ProjectInterceptor implements HttpInterceptor {
         },
       });
     }
-    console.log('project interecpt');
+    
     return next.handle(request);
   }
 }

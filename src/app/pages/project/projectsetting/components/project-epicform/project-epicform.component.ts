@@ -37,42 +37,40 @@ export class ProjectEpicformComponent implements OnInit, OnDestroy {
       this.form.value.id = this.boardId.id;
     });
     this.projectId = this.projectFacadeSrv.getProject().id;
-    
+
     if (this.boardId.id) {
       this.fillEpicEdit();
     }
-
   }
 
   onSubmit() {
     if (!this.boardId.id) {
-      console.log('add');
+      //console.log()('add');
       this.epicSrv
         .createEpic(this.form.value)
         .pipe(takeUntil(this.sub$))
         .subscribe((res) => {
-          console.log(res);
+          //console.log()(res);
           this.router.navigate(['/project/setting/epics']);
         });
     } else {
-      console.log('update');
+      //console.log()('update');
       this.epicSrv.updateEpics(this.form.value).subscribe((res) => {
-        console.log(res);
-        this.router.navigate(['/project/setting/epics'])
+        //console.log()(res);
+        this.router.navigate(['/project/setting/epics']);
       });
     }
   }
 
-
-
   fillEpicEdit() {
-    this.epicSrv.getTarEpics(this.boardId.id).pipe(takeUntil(this.sub$)).subscribe((res) => {
-      this.form.patchValue(res);
-    });
-  } 
-  
-  
-  
+    this.epicSrv
+      .getTarEpics(this.boardId.id)
+      .pipe(takeUntil(this.sub$))
+      .subscribe((res) => {
+        this.form.patchValue(res);
+      });
+  }
+
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();

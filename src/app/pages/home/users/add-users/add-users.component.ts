@@ -22,8 +22,8 @@ export class AddUsersComponent {
   ) {}
   onSubmit() {
     this.userService.createNewUsers(this.form.value).subscribe((res) => {
-      console.log(res);
+      //console.log()(res);
     });
-    console.log(this.form.value);
+    //console.log()(this.form.value);
   }
 }

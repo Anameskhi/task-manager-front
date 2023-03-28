@@ -43,7 +43,7 @@ ngOnInit(): void {
 
 getError(){
   this.errorMessage$.subscribe(res => 
-console.log(res) 
+console.log(res)
  )
 }
 

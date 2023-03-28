@@ -71,8 +71,7 @@ export class CurrentBoardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>, column: Column) {
-    console.log(event);
-    console.log(column);
+   
 
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -98,11 +97,11 @@ export class CurrentBoardComponent implements OnInit {
       );
       this.tasks[column.id] = tasks;
       const currentTask = tasks[event.currentIndex];
-      console.log(currentTask);
+     
       this.taskService
         .updateTask(currentTask.id, currentTask)
         .subscribe((task) => {
-          console.log(task);
+          
           this.getTasks();
         });
     }

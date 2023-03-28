@@ -45,7 +45,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
         }else{
           true
         }
-        console.log(this.dataSource);
+        
       });
   }
   addTask(taskId?: Column) {
@@ -72,7 +72,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe(res=>{
-      console.log(res);
+      
       if(res){
         this.getTask()
       }

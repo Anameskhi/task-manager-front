@@ -29,7 +29,7 @@ export class ProjectIssuetypesComponent implements OnInit, OnDestroy {
     this.getIssueTypes();
 
     this.fullProjectId = this.projectFacadeSrv.getProject().id;
-    console.log(this.fullProjectId);
+    //console.log()(this.fullProjectId);
   }
 
   getIssueTypes() {
@@ -52,7 +52,7 @@ export class ProjectIssuetypesComponent implements OnInit, OnDestroy {
 
   onDelete(id: any) {
     this.issuetypeSrv.deleteIssueType(id).subscribe((res) => {
-      console.log(res);
+      //console.log()(res);
       if (res) {
         this.getIssueTypes();
       }

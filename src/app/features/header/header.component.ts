@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { IProject } from 'src/app/core/interfaces/project';
@@ -27,13 +28,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private toastService: NgToastService,
     private projectService: ProjectService,
     private projectFacadeService: ProjectFacadeService,
-    private roleSerivec: RoleService
+    private roleSerivec: RoleService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getMyProjects();
     this.getEachProject();
-    
   }
 
   logout() {
@@ -45,8 +47,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   selectProject(projectId: number) {
-    console.log(projectId);
     this.projectFacadeService.setProject(projectId);
+  }
+  refreshPage() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 
   getMyProjects() {
@@ -58,7 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (p) => (this.countOfMyProjects = Object.keys(p).length)
     );
   }
-  
 
   ngOnDestroy(): void {
     this.sub$.next(null);

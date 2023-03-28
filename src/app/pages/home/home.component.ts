@@ -18,9 +18,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.showCreateBoard);
+   
     this.getAllProject();
-    console.log('test');
+    
     
   }
 

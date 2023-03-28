@@ -58,7 +58,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
         this.router.navigate(['project/setting']);
       });
 
-    console.log(this.createProject.value);
+    //console.log()(this.createProject.value);
   }
 
   getStyle() {
@@ -67,7 +67,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     } else if (this.color.startsWith('rgb') || this.color.startsWith('#')) {
       return { 'background-color': this.color };
     } else {
-      console.log(this.color);
+      //console.log()(this.color);
       return {};
     }
   }

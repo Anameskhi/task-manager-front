@@ -46,13 +46,13 @@ export class IssueTypesComponent implements OnInit {
         // this.getBoard()
       }
     });
-    console.log(this.issueTypeId);
+    //console.log()(this.issueTypeId);
     if (this.issueTypeId) {
       this.fillIsueType();
     }
   }
   save() {
-    console.log(this.form.value);
+    //console.log()(this.form.value);
     this.form.markAllAsTouched();
 
     if (this.issueTypeId) {
@@ -65,8 +65,8 @@ export class IssueTypesComponent implements OnInit {
       this.issueTypeService
         .createIssueType(this.form.value)
         .subscribe((res) => {
-          console.log('create');
-          console.log(res);
+          //console.log()('create');
+          //console.log()(res);
           this.route.navigate(['/projects/setting/board']).then();
         });
     }
@@ -85,11 +85,9 @@ export class IssueTypesComponent implements OnInit {
     );
   }
 
-  
-
   fillIsueType() {
     this.issueTypeService.getIssueType(this.issueTypeId).subscribe((res) => {
-      console.log(res);
+      //console.log()(res);
       this.form.patchValue(res);
       res.issueTypeColumns.forEach((column) => {
         this.columnsFormArray.push(

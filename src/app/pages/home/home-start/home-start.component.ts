@@ -33,12 +33,12 @@ export class HomeStartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getProjects();
     this.getMyProjects();
-    
+
     this.getAllUsers();
   }
 
   selectProject(project: any) {
-    console.log(project);
+    //console.log()(project);
     this.projectFacadeService.setProject(project.id);
     this.router.navigate(['/board']);
   }
@@ -68,7 +68,7 @@ export class HomeStartComponent implements OnInit, OnDestroy {
       .getMyProjects()
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-        console.log(res);
+        //console.log()(res);
         this.myProjects = res;
       });
   }
@@ -79,11 +79,10 @@ export class HomeStartComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
         this.allUsers = res;
-        console.log(this.allUsers);
+        //console.log()(this.allUsers);
       });
   }
 
-  
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();

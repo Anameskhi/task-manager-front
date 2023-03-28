@@ -139,7 +139,7 @@ export class AddTaskComponent implements OnInit, OnDestroy {
         .updateTask(this.data.taskId, this.form.value)
         .pipe(takeUntil(this.sub$))
         .subscribe((task) => {
-          console.log(task);
+          
           this.dialogRef.close(task);
         });
     } else {

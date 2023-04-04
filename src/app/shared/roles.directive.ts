@@ -6,20 +6,20 @@ import { RoleService } from '../core/services';
 })
 export class RolesDirective implements OnInit {
   roles: any;
-  constructor(private roleService: RoleService,private el:ElementRef) {}
+  constructor(private roleService: RoleService, private el: ElementRef) {}
   ngOnInit(): void {
-    this.deleteDiv()
+    this.deleteDiv();
   }
 
-  deleteDiv(){
-    this.roleService.getUserRole().subscribe(res=>{
-    this.roles=res;
-    
-    if(this.roles.length>1){
-      return true
-    }else{
-      return this.el.nativeElement.remove();
-    }
-    })
+  deleteDiv() {
+    this.roleService.getUserRole().subscribe((res) => {
+      this.roles = res;
+      console.log(res)
+      if (this.roles.length > 1) {
+        return true;
+      } else {
+        return this.el.nativeElement.remove();
+      }
+    });
   }
 }

@@ -45,7 +45,8 @@ export class ProjectBoardsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.sub$))
       .subscribe((boards) => {
         this.loader = false;
-        //console.log()((this.dataSource.data = boards));
+
+        this.dataSource.data = boards;
       });
   }
 

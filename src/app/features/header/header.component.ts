@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { IProject } from 'src/app/core/interfaces/project';
 import {
@@ -25,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private toastService: NgToastService,
     private projectService: ProjectService,
     private projectFacadeService: ProjectFacadeService,
     private roleSerivec: RoleService,
@@ -39,10 +37,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.toastService.success({
-      detail: 'SUCCESS',
-      summary: 'You have Logged out Successfully',
-    });
     this.authService.signOut();
   }
 

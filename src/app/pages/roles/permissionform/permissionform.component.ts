@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoleService } from 'src/app/core/services';
 import * as _ from 'lodash';
-import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-permissionform',
@@ -18,7 +17,6 @@ export class PermissionformComponent implements OnInit {
     private permissionService: RoleService,
     private activatedRoute: ActivatedRoute,
     private roleService: RoleService,
-    private toastService: NgToastService,
     private router: Router
   ) {}
 
@@ -67,10 +65,6 @@ export class PermissionformComponent implements OnInit {
         permissions: Array.from(this.permissions),
       })
       .subscribe((res) => {
-        this.toastService.success({
-          detail: 'SUCCESS MESSAGE',
-          summary: 'Permission successfully saved',
-        });
         this.router.navigate(['roles']);
         //console.log()(res)
       });

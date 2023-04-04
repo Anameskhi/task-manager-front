@@ -1,4 +1,3 @@
-import { NgToastModule } from 'ng-angular-popup';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';

@@ -8,7 +8,6 @@ import { PasswordValidate } from './../../../core/validators/password.validator'
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
-import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-register',
@@ -54,7 +53,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private authFacadeService: AuthFacadeService,
-    private toast: NgToastService,
     private router: Router
   ) { }
 
@@ -77,14 +75,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .subscribe({
         next: res=>{
           if(res){
-        this.toast.success({detail: "Success Message", summary: "Register is Success", duration: 4000})
         this.router.navigate(['/auth/login'])
           }
         
         },
         error: err=>{
-         this.toast.error({detail: "Error Message", summary: err.message , duration: 4000})
-       }
+          console.log(err)
+        }
       
         }
       )

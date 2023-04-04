@@ -1,6 +1,5 @@
 import { Token } from './../interfaces/token';
 import { Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 import { HttpClient } from '@angular/common/http';
 import { CookieStorageService } from './cookie.service';
 import { IUser } from './../interfaces/user';
@@ -17,7 +16,6 @@ export class AuthService extends BaseService {
 
   constructor(
     private cookieStorageService: CookieStorageService,
-    private toast: NgToastService,
     private router: Router,
     http: HttpClient
   ) {

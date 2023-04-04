@@ -5,7 +5,6 @@ import { IRole } from 'src/app/core/interfaces/role';
 import { RoleService } from 'src/app/core/services';
 import { UsersService } from 'src/app/core/services/users.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 import { IUser } from 'src/app/core/interfaces';
 
 @Component({
@@ -24,7 +23,6 @@ export class UsersRolesComponent implements OnInit {
     private roleService: RoleService,
     private usersService: UsersService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -44,11 +42,6 @@ export class UsersRolesComponent implements OnInit {
         roleIds: roles,
       })
       .subscribe((res: IUser) => {
-        this.toast.success({
-          detail: 'Success Message',
-          summary: 'User role was set successfully',
-          duration: 4000,
-        });
         this.dialogRef.close(res);
       });
   }

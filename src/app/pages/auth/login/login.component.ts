@@ -5,7 +5,6 @@ import { AuthService } from './../../../core/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +22,6 @@ export class LoginComponent implements  OnDestroy {
   constructor(
     private authService: AuthService,
     private authFacadeService: AuthFacadeService,
-    private toast: NgToastService,
     private router: Router
   ){}
 
@@ -53,12 +51,9 @@ export class LoginComponent implements  OnDestroy {
       .subscribe({
         next: res=>{
           AuthInterceptor.accessToken = res.token.accessToken
-        this.toast.success({detail: "Success Message", summary: "Login is Success", duration: 4000})
         this.router.navigate(['/home'])
         },
-         error: err=>{
-          this.toast.error({detail: "Error Message", summary: err.message , duration: 4000})
-        }
+        error: err=>console.log(err)
       })
     }
 

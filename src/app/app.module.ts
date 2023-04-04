@@ -1,7 +1,6 @@
 import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NgToastModule } from 'ng-angular-popup';
 import { CookieService } from 'ngx-cookie-service';
 import {
   HttpClient,
@@ -26,7 +25,6 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgToastModule,
     MatSnackBarModule,
     MainLayoutModule,
     MatDialogModule,
